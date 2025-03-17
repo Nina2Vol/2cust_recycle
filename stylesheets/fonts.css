@@ -1,15 +1,15 @@
 @font-face {
-    font-family: 'Pragmatica_Cond_Book';
-    src: url('./fonts/Pragmatica_Cond_Book.woff2') format('woff2'),
-         url('./fonts/Pragmatica_Cond_Book.woff') format('woff');
-    font-weight: book;
-    font-style: condensed;
+    font-family: 'PragmaticaCondBook';
+    src: url('./fonts/PragmaticaCondBook.woff2') format('woff2'),
+         url('./fonts/PragmaticaCondBook.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Pragmatica_Cond_Medium';
-    src: url('./fonts/Pragmatica_Cond_Medium.woff2') format('woff2'),
-         url('./fonts/Pragmatica_Cond_Medium.woff') format('woff');
-    font-weight: medium;
-    font-style: condensed;
+    font-family: 'PragmaticaCondMedium';
+    src: url('./fonts/PragmaticaCondMedium.woff2') format('woff2'),
+         url('./fonts/PragmaticaCondMedium.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
 }
