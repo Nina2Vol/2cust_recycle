@@ -109,14 +109,13 @@ import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
 import { GLTFLoader } from 'GLTFLoader';
 
-// --- Переменные ---
 const shopPathModels = [
-    '../models/product01.glb',
-    '../models/product02.glb',
-    '../models/product03.glb',
-    '../models/product04.glb',
-    '../models/product05.glb',
-    '../models/product06.glb',
+    '/models/product01.glb', // Начинается со слеша /
+    '/models/product02.glb',
+    '/models/product03.glb',
+    '/models/product04.glb',
+    '/models/product05.glb',
+    '/models/product06.glb',
 ];
 
 const productData = [
