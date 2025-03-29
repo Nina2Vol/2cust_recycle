@@ -1,0 +1,860 @@
+/* === Глобальные стили и сбросы === */
+html {
+    box-sizing: border-box; /* Включаем padding и border в размеры элемента */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Сброс стандартных стилей и базовые настройки body */
+body {
+    margin: 0; /* !!! Убираем отступ по умолчанию !!! */
+    padding: 0;
+    border: 0;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400; /* Обычный вес (Regular) */
+    font-style: normal;
+    background-color: #EBEBEB;
+    line-height: 1.5; /* Базовая высота строки для читаемости */
+    font-size: 16px; /* Базовый размер шрифта */
+    color: #333; /* Базовый цвет текста */
+}
+
+/* Стили заголовков */
+h1, h2, h3 { /* Добавил h3 для единообразия */
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 800; /* Жирный вес (Bold) */
+    margin-top: 0; /* Убираем верхний отступ по умолчанию */
+    margin-bottom: 1.5em; /* Добавляем нижний отступ */
+    line-height: 1.2;
+    text-align: center; /* Центрируем заголовки по умолчанию */
+}
+
+h1 {
+    font-size: 2em; /* Примерный размер */
+}
+
+h2 {
+    font-size: 20px; /* Примерный размер */
+    font-weight:bold;
+    filter: blur(0.5px); /* Размытие для H2 */
+    font-weight: normal; /* Как на картинке */
+    letter-spacing: 0.1em; /* Как на картинке */
+}
+
+h3 {
+    font-size: 1.3em; /* Примерный размер */
+}
+
+/* Утилитарный класс для жирного текста */
+.bold-text {
+    font-weight: 800;
+}
+
+/* Стили ссылок */
+a {
+    color: inherit; /* Наследовать цвет текста */
+    text-decoration: none; /* Убрать подчеркивание по умолчанию */
+}
+
+/* === Контейнер основного контента === */
+.main-page-content {
+    display: block; /* По умолчанию блочный, JS будет его скрывать/показывать */
+    /* Здесь не нужно position */
+}
+
+/* === Секции основного контента (в потоке) === */
+.section.main,
+.second_screen,
+.third_screen,
+.fourth_screen {
+    position: relative; /* Для позиционирования дочерних абсолютных элементов */
+    width: 100%;
+    min-height: 100vh; /* Минимальная высота экрана, может быть больше */
+    padding: 5vh 5vw; /* Общие внутренние отступы (можно переопределить) */
+    box-sizing: border-box;
+    /* Убираем все position: absolute, top, left, opacity, visibility отсюда */
+    /* Убираем margin-top */
+}
+
+/* --- Первая секция (Главная) --- */
+.section.main {
+    height: 100vh; /* Строго по высоте экрана */
+    min-height: auto; /* Переопределяем min-height */
+    padding: 0; /* Убираем общий паддинг для полного контроля */
+    display: flex; /* Используем flex для позиционирования 3D */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Скрыть части модели, выходящие за пределы */
+}
+
+#logo-container {
+    position: absolute; /* Относительно .section.main */
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+#logo-container img {
+    max-width: 350px; /* Немного уменьшил для разных экранов */
+    width: 70vw; /* Адаптивность */
+    height: auto;
+}
+
+.logo-caption {
+    font-size: 1rem;
+    color: #000000;
+    margin-top: 5px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+}
+
+.menu {
+    position: absolute; /* Относительно .section.main */
+    top: 5vh;
+    left: 2vw;
+    display: flex;
+    flex-direction: column;
+    z-index: 30;
+    align-items: flex-start; /* Выравнивание по левому краю */
+}
+
+#recycle_button,
+#upcycle_button,
+#customization_button {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 1vh;
+    text-align: left;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem; /* Используем rem для масштабируемости */
+    text-decoration: underline;
+    color: #000; /* Явный цвет */
+}
+#recycle_button:hover,
+#upcycle_button:hover,
+#customization_button:hover {
+    color: #555; /* Эффект при наведении */
+}
+
+
+.three_office {
+    width: 100%; /* Занимает всю доступную ширину flex-элемента */
+    height: 100%; /* Занимает всю доступную высоту flex-элемента */
+    cursor: grab;
+    z-index: 1;
+    position: relative; /* На всякий случай, если внутри будут абсолютные элементы */
+}
+
+.three_office:active {
+    cursor: grabbing;
+}
+
+/* --- Вторая секция (GIF) --- */
+.second_screen {
+    /* padding-top: 10vh; Убрали, т.к. секции идут потоком. Отступ сверху задается паддингом */
+    /* min-height: 100vh; */ /* Уже задано выше */
+    background-color: #EBEBEB; /* Фон здесь, если отличается от body */
+}
+
+.blur_text {
+    /* position: relative; Уже задано для .second_screen */
+    display: flex;
+    justify-content: center;
+    filter: blur(1px);
+    margin-bottom: 40px; /* Отступ от гифок */
+}
+.blur_text img {
+    max-width: 96vw;
+    height: auto;
+}
+
+.gif_group {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    background-color: #000000;
+    position: absolute; /* Позиционируется относительно body или viewport (зависит от JS) */
+    cursor: move;
+    z-index: 100; /* Начальный z-index для draggable */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3); /* Тень для окон */
+    min-width: 150px; /* Минимальная ширина окна */
+}
+
+.gif_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 4px;
+    color: white;
+}
+
+.gif_title {
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    margin: 0 0 0 5px; /* Убрал верхний/нижний margin */
+    font-size: 1.1em;
+    white-space: nowrap; /* Предотвратить перенос заголовка */
+}
+
+.close-btn {
+    /* width: 32px; Размеры задаются через img */
+    cursor: pointer;
+    padding: 4px; /* Увеличить область клика */
+    display: flex; /* Для центрирования img */
+    align-items: center;
+    justify-content: center;
+}
+.close-btn img {
+    width: 24px; /* Фиксированный размер иконки */
+    height: 24px;
+    display: block; /* Убрать лишнее пространство под картинкой */
+}
+
+.gif_group img { /* Основная картинка/гифка */
+    display: block; /* Убрать лишнее пространство под картинкой */
+    max-width: 100%; /* Чтобы не вылезала из черной рамки */
+    height: auto;
+    /* Ширина задается в HTML атрибутом width или через JS при позиционировании */
+}
+
+
+/* --- Третья секция (Магазин) --- */
+.third_screen {
+    /* padding-top: 5vh; Если нужен доп. отступ сверху */
+}
+
+.third_screen h2 {
+    margin-bottom: 40px;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    padding: 0 1vw; /* Небольшие отступы по бокам контейнера карточек */
+}
+
+.card {
+    box-sizing: border-box;
+    width: calc((100% - 4vw) / 3); /* 3 колонки с 2 gap'ами */
+    min-width: 250px;
+    max-width: 400px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding-bottom: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Подъем при наведении */
+    /* box-shadow: 0 5px 15px rgba(0,0,0,0.15); */
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-number {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* --- Модальное окно Магазина --- */
+.shopModal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1100; /* Выше чем draggable окна */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Добавить прокрутку если контент не влезает */
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5vh 5vw;
+    box-sizing: border-box;
+}
+
+.shopModal-content-wrapper {
+    background-color: #ffffff;
+    margin: auto;
+    padding: 0; /* Убрали общий паддинг */
+    border: none;
+    width: 85%;
+    max-width: 1100px;
+    min-height: 70vh; /* Минимальная высота */
+    max-height: 90vh; /* Максимальная высота */
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Скрываем все что выходит за рамки */
+}
+
+.shopModal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Не сжимать хедер */
+}
+
+.modal-art {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 1.1em; /* Сделал чуть меньше */
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+.modal-close {
+    background-color: #4d4d4d;
+    color: #ffffff;
+    border: none;
+    font-size: 20px; /* Сделал чуть меньше */
+    font-weight: bold; /* Сделал жирнее для заметности */
+    line-height: 1;
+    cursor: pointer;
+    width: 30px; /* Уменьшил кнопку */
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.2s ease;
+    border-radius: 3px; /* Небольшое скругление */
+}
+
+.modal-close:hover {
+    background-color: #666666;
+}
+
+.modal-body {
+    display: flex;
+    flex-grow: 1; /* Занимает оставшееся место */
+    overflow: hidden; /* Предотвратить выход контента за пределы body */
+    /* Если нужны отступы между колонками, можно использовать gap */
+    /* gap: 1px; */
+    /* background-color: #ccc; */ /* Для границы между колонками */
+}
+
+.modal-3d-container {
+    flex: 6; /* Пропорция для 3D */
+    background-color: #f0f0f0; /* Светлее фон */
+    position: relative;
+    overflow: hidden;
+    display: flex; /* Для центрирования canvas, если он меньше */
+    justify-content: center;
+    align-items: center;
+    min-height: 0; /* Для flexbox в Firefox */
+}
+
+.modal-3d-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Масштабирование, если нужно */
+}
+
+.modal-info {
+    flex: 4; /* Пропорция для инфо */
+    background-color: #ffffff;
+    padding: 30px 25px; /* Уменьшил паддинги */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: auto; /* Добавить скролл для инфо, если не влезает */
+    min-height: 0; /* Для flexbox в Firefox */
+}
+
+.modal-info h2 { /* "ОБЪЕКТ #XX" */
+    font-weight: 700;
+    font-size: 1.8em; /* Уменьшил */
+    margin: 0 0 15px 0;
+    color: #000000;
+    line-height: 1.2;
+    text-align: left; /* В инфо блоке выравнивание по левому краю */
+}
+
+.modal-info p { /* Текст M/L, УНИСЕКС, описание */
+    font-weight: 400;
+    font-size: 1em; /* Уменьшил */
+    line-height: 1.6;
+    color: #333333;
+    margin: 0 0 10px 0;
+    text-align: left; /* Выравнивание по левому краю */
+}
+
+#modal_product_details {
+    flex-grow: 1; /* Занимает доступное пространство */
+    margin-bottom: 20px; /* Отступ до кнопки */
+}
+
+.modal-button {
+    background-color: #e0e0e0;
+    border: 1px solid #333333;
+    color: #333333;
+    padding: 12px 20px; /* Увеличил паддинг */
+    cursor: default;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: auto; /* Прижимает кнопку книзу, если #modal_product_details имеет flex-grow: 1 */
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Не сжимать кнопку */
+}
+
+
+/* --- Четвертая секция (Галерея) --- */
+.fourth_screen {
+    /* padding-top: 10vh; Если нужен доп. отступ сверху */
+}
+
+#gallery_container {
+    /* Стили для контейнера галереи, например, grid или flex */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+/* Добавь стили для элементов галереи внутри #gallery_container */
+
+
+/* === СЕКЦИИ-ОВЕРЛЕИ === */
+.section.recycle,
+.section.upcycle,
+.section.customization {
+    display: none; /* !!! Скрыты по умолчанию !!! */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Выше основного контента */
+    background-color: #EBEBEB;
+    overflow-y: auto; /* Скролл для контента оверлея */
+    padding: 20px; /* Общий паддинг для оверлеев */
+    box-sizing: border-box;
+}
+
+/* --- Секция Recycle --- */
+.section.recycle {
+    /* Можно задать специфичный фон или стили */
+    padding: 0; /* Убираем общий паддинг, т.к. есть свой header */
+}
+
+.section.recycle .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Распределить элементы */
+    padding: 15px 20px;
+    background: #fff; /* Фон хедера */
+    border-bottom: 1px solid #ccc;
+    position: sticky; /* Прилипающий хедер */
+    top: 0;
+    z-index: 1001; /* Выше контента оверлея */
+}
+
+.section.recycle .header #recycle_back {
+    /* Кнопка назад */
+    border: none;
+    background: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 20px; /* Отступ от лого */
+    text-transform: uppercase;
+}
+.section.recycle .header #recycle_back:hover {
+    color: #555;
+}
+
+
+.section.recycle .header #logo-container {
+    position: static; /* Убираем absolute */
+    transform: none;
+    text-align: center;
+    margin: 0 auto; /* Центрируем лого, если кнопки по краям */
+    padding: 0 20px; /* Отступы от соседних элементов */
+}
+.section.recycle .header #logo-container img {
+    max-width: 250px; /* Уменьшаем лого в хедере */
+    width: auto;
+    max-height: 40px; /* Ограничиваем высоту */
+}
+.section.recycle .header .logo-caption {
+     font-size: 0.8rem;
+     margin-top: 2px;
+}
+
+
+.section.recycle .header h3 {
+    /* Заголовок "РАСПРЕДЕЛИ ОТХОДЫ" */
+    font-size: 1.2rem;
+    text-align: right;
+    margin: 0; /* Убираем стандартные отступы H3 */
+    margin-left: 20px; /* Отступ от лого */
+    line-height: 1.1;
+}
+
+.bins_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end; /* Выровнять по низу */
+    flex-wrap: wrap; /* Перенос на мобильных */
+    padding: 50px 20px;
+    gap: 20px;
+}
+
+.bin {
+    position: relative; /* Для позиционирования открытой/закрытой картинки */
+    cursor: pointer; /* или drag-and-drop стили */
+    text-align: center;
+}
+
+.bin .bin_img {
+    max-width: 150px; /* Размер корзины */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Логика показа открытой/закрытой корзины (пример) */
+.bin .bin_img:first-child { /* Открытая (верхняя) */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.bin:hover .bin_img:first-child { /* Показ открытой при наведении */
+    opacity: 1;
+}
+.bin:hover .bin_img:last-child { /* Скрытие закрытой при наведении */
+    opacity: 0;
+}
+
+/* Модальное окно результатов Recycle */
+#resultModal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1050; /* Выше .bins_container */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex; /* Используем flex для центрирования */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#resultModal .modal-content {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#resultModal .modal-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+#resultModal .modal-stats {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#resultModal .modal-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+#resultModal .modal-button:hover {
+    background-color: #555;
+}
+
+/* --- Секция Upcycle --- */
+.section.upcycle {
+    /* Стили для апсайкла */
+    display: flex; /* Возможно, flex для расположения элементов */
+    align-items: center;
+    justify-content: center; /* Пример */
+    position: relative; /* Для позиционирования кнопки назад и др. */
+}
+
+#upcycle_back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    /* Стили кнопки назад */
+    border: none;
+    background: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    z-index: 1002; /* Выше остального контента */
+}
+#upcycle_back:hover {
+    color: #555;
+}
+
+
+.mannequin {
+    /* Стили манекена */
+    max-width: 40%;
+    height: auto;
+    /* position: absolute; */ /* Если нужно позиционировать */
+}
+.mannequin img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Стили для перетаскиваемой одежды */
+.whole_clothes_div {
+    position: absolute; /* Чтобы можно было перетаскивать */
+    cursor: grab;
+    z-index: 1001; /* Выше манекена */
+    width: 150px; /* Примерный размер */
+    /* Начальные позиции можно задать здесь или через JS */
+}
+.whole_clothes_div:active {
+    cursor: grabbing;
+}
+
+.whole_clothes_div img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none; /* Чтобы события мыши проходили на div */
+}
+
+/* Начальные позиции (пример) */
+.green_tshirt { top: 10%; left: 5%; }
+.black_tshirt { top: 15%; right: 5%; }
+.grey_sweater { top: 40%; left: 10%; }
+.blue_jeans { top: 60%; right: 10%; }
+.denim_jacket { bottom: 10%; left: 5%; }
+.blue_hoodie { bottom: 10%; right: 5%; }
+
+
+/* --- Секция Customization --- */
+.section.customization {
+    /* background-color: #f8f8f8; */ /* Специфичный фон, если нужно */
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Убираем общий паддинг */
+}
+
+.customization-header { /* Добавляем обертку для кнопки и инфо */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #fff; /* Фон хедера */
+    border-bottom: 1px solid #ccc;
+    flex-shrink: 0; /* Не сжимать хедер */
+}
+
+#customization_back {
+    /* Стили кнопки назад */
+    border: none;
+    background: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+#customization_back:hover {
+    color: #555;
+}
+
+.save_info {
+    font-size: 0.9em;
+    color: #666;
+    /* Стили для информации о сохранении */
+}
+
+.design_container {
+    display: flex;
+    flex-grow: 1; /* Занимает все оставшееся место */
+    overflow: hidden; /* Предотвратить проблемы с layout */
+    padding: 20px; /* Отступы вокруг холста и контролов */
+    gap: 20px; /* Пространство между холстом и контролами */
+}
+
+.canvas_container {
+    position: relative;
+    width: 60%; /* Ширина области холста */
+    height: auto; /* Высота подстроится */
+    aspect-ratio: 1/1.2; /* Соотношение сторон футболки, пример */
+    border: 1px solid #ccc;
+    background-color: #fff; /* Фон под холстами */
+    flex-shrink: 0;
+}
+
+.canvas_layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#tshirt_base_canvas {
+    z-index: 1; /* Нижний слой (футболка) */
+}
+
+#tshirt_drawing_canvas {
+    z-index: 2; /* Верхний слой (рисование) */
+    cursor: crosshair; /* Курсор для рисования */
+}
+
+.controls {
+    width: 35%; /* Ширина области контролов */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Пространство между группами контролов */
+    overflow-y: auto; /* Скролл для контролов, если их много */
+    padding-right: 10px; /* Отступ справа для скроллбара */
+}
+
+.control_group {
+    background-color: #f0f0f0; /* Фон для группы */
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.control_group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* Стили для инпутов и кнопок */
+input[type="color"],
+input[type="range"],
+button {
+    font-family: "Roboto Condensed", sans-serif; /* Наследуем шрифт */
+}
+
+input[type="color"] {
+    width: 100%; /* На всю ширину группы */
+    height: 40px;
+    border: 1px solid #ccc;
+    padding: 0;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+}
+
+#brush_size_value {
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.brush_buttons {
+    display: grid; /* Используем grid для кнопок кистей */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 8px;
+}
+
+.brush_btn {
+    padding: 8px 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    text-align: center;
+    border-radius: 3px;
+    /* Убери <button> внутри <button> из HTML */
+}
+
+.brush_btn.active {
+    background-color: #ddd;
+    border-color: #aaa;
+    font-weight: 700;
+}
+
+.brush_btn:hover:not(.active) {
+    background-color: #eee;
+}
+
+/* Стили для кнопок очистки/публикации */
+.control_group button {
+     padding: 10px 15px;
+     border: 1px solid #333;
+     background-color: #333;
+     color: #fff;
+     cursor: pointer;
+     font-size: 0.9em;
+     font-weight: 700;
+     text-transform: uppercase;
+     transition: background-color 0.2s ease, color 0.2s ease;
+     border-radius: 3px;
+}
+
+.control_group button:hover {
+     background-color: #555;
+}
+
+#clear_button {
+    background-color: #f8d7da; /* Красный фон для очистки */
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+#clear_button:hover {
+     background-color: #f5c6cb;
+}

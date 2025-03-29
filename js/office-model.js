@@ -5,7 +5,6 @@ import { RectAreaLightUniformsLib } from 'RectAreaLightUniformsLib'
 
 document.addEventListener('DOMContentLoaded', () => {
     initThree()
-    initNavigation()
   })
 
 function initThree() {

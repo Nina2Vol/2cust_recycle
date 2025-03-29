@@ -1,33 +1,428 @@
 
+/* layout.css */
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color:#EBEBEB;
+  /* display: auto; removed, not standard */
+}
+
+h1, h2, .bold-text {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 800; /* Используем жирный вес (Bold) */
+  font-size: 20px;
+  justify-self: center;
+}
+
+h2 {
+  filter: blur(1px); /* Global blur for H2, might need override */
+}
+
 
 #logo-container {
   position: absolute;
-  top: 20px;        
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  z-index: 10;      
+  z-index: 10;
 }
 
 #logo-container img {
-  max-width: 400px;  
+  max-width: 400px;
 }
 
 .logo-caption {
-  font-size: 14px;
+  font-size: 16px;
   color: #000000;
   margin-top: 5px;
-  font-family:monospace;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
 }
 
-  .three_office {
-    width: 80vw;
-    height: 60vh;
-    cursor: grab;
-    position: relative;
-    z-index: 1;
-  }
+.menu {
+  position: absolute;
+  margin-top: 4vh;
+  margin-left: 2vw;
+  display: flex;
+  flex-direction: column;
+  z-index:30;
+  align-items: left; /* Should be align-items: flex-start; but left might work */
+}
 
-  .three_office:active {
-    cursor: grabbing;
-  }
+#recycle_button,
+#upcycle_button,
+#customization_button {
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  margin-bottom: 1vh;
+  text-align: left;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.three_office {
+  cursor: grab;
+  position: relative;
+  z-index: 1;
+  /* Add specific width/height if needed, e.g. */
+  width: 100%;
+  height: calc(100vh - 100px); /* Example: full height minus header/menu */
+}
+
+.three_office:active {
+  cursor: grabbing;
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s; /* Smooth transition */
+}
+
+.section.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+.section.main {
+  position: relative; /* Changed from absolute for flow with other sections */
+  height: auto; /* Allow content to define height */
+  min-height: 100vh; /* Ensure it takes at least full screen */
+  opacity: 1; /* Main is visible by default */
+  visibility: visible; /* Main is visible by default */
+  z-index: 1; /* Lower than other specific sections */
+  display: flex; /* Use flex for layout */
+  flex-direction: column; /* Stack elements vertically */
+}
+
+
+.section.recycle,
+.section.upcycle,
+.section.customization {
+  background-color: #EBEBEB; /* Common background for these */
+  z-index: 50; /* Higher than main */
+  /* Other specific styles remain in their respective CSS files */
+}
+
+.second_screen {
+  padding-top: 10vh; /* Adjusted from margin-top */
+  position: relative;
+  min-height: 100vh; /* Ensure it takes space */
+  /* background-color: #EBEBEB; */ /* Inherits from body */
+  display: block; /* Or flex/grid if needed for layout */
+}
+
+.blur_text {
+  display: flex;
+  justify-content: center;
+  filter: blur(1px);
+  margin-bottom: 40px;
+}
+.blur_text img {
+  max-width: 98vw;
+  height: auto;
+}
+
+.gif_group {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  background-color: #000000;
+  position:absolute;
+  cursor: move;
+  z-index: 20; /* Above office, below menus */
+}
+
+.gif_header {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding-bottom : 4px;
+}
+
+.gif_title {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.close-btn {
+  width: 32px;
+  cursor: pointer;
+  padding-right: 8px;
+}
+
+.third_screen {
+  padding: 5vh 2vw 2vw 2vw; /* Added top padding */
+  position: relative;
+  min-height: 100vh; /* Ensure it takes space */
+}
+
+.third_screen h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
+    filter: blur(1px); /* Keeping original blur */
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  justify-content: center;
+  padding-bottom: 5vh; /* Space at the bottom */
+}
+
+.card {
+  box-sizing: border-box;
+  width: calc((100% - 4vw) / 3); /* Responsive width */
+  min-width: 250px;
+  max-width: 400px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding-bottom: 10px;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-number {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* --- Стили Модального окна --- */
+
+.shopModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* On top of everything */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5vh 5vw;
+  box-sizing: border-box;
+}
+
+/* Class added to body when modal is open to prevent background scroll */
+body.modal-open {
+  overflow: hidden;
+}
+
+.shopModal-content-wrapper {
+  background-color: #ffffff;
+  margin: auto; /* Center horizontally */
+  padding: 0; /* Padding inside elements */
+  width: 85%;
+  max-width: 1100px;
+  min-height: 70vh; /* Minimum height */
+  max-height: 90vh; /* Maximum height */
+  position: relative;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column; /* Stack header and body */
+  border: 1px solid #000000; /* <-- ADDED: Overall black border */
+}
+
+
+.shopModal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000; /* Black header */
+  /* color: #000000; */ /* <-- REMOVED: Default text color */
+  padding: 10px 15px; /* Padding inside header */
+  box-sizing: border-box;
+  flex-shrink: 0; /* Prevent header from shrinking */
+  /* border-bottom: 1px solid #000; */ /* Optional: if wrapper border isn't enough */
+}
+
+.modal-art {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin: 0;
+  letter-spacing: 0.05em;
+  color: #ffffff; /* <-- ADDED: White text for article */
+}
+
+.modal-close {
+  background-color: #4d4d4d;
+  color: #ffffff;
+  border: none;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.2s ease;
+  /* Position is static by default, no need to override */
+}
+
+.modal-close:hover {
+  background-color: #666666;
+}
+
+
+.modal-body {
+  display: flex;
+  flex-grow: 1; /* Allow body to take remaining space */
+  background-color: #ffffff; /* Ensure body background is white */
+  overflow: hidden; /* Prevent content overflow issues */
+}
+
+.modal-3d-container {
+  flex: 6; /* Takes 6 parts of width */
+  background-color: #e9e9e9; /* <-- KEPT: Grey background for 3D view */
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid #000000; /* <-- ADDED: Right border separator */
+  box-sizing: border-box; /* <-- ADDED: Include border in width calculation */
+}
+.modal-3d-container canvas {
+  display: block; /* Remove extra space below canvas */
+  width: 100%;
+  height: 100%;
+}
+
+.modal-info {
+  flex: 4; /* Takes 4 parts of width */
+  background-color: #ffffff; /* White info panel */
+  padding: 40px 30px 30px 30px; /* Padding inside info panel */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto; /* Add scroll if content exceeds height */
+}
+
+
+.modal-info h2 {
+  font-weight: 800; /* <-- ADDED: Bolder heading */
+  font-size: 2.2em;
+  margin: 0 0 20px 0;
+  color: #000000;
+  line-height: 1.2;
+  text-align: left; /* <-- ADDED: Ensure left alignment */
+  filter: none; /* <-- ADDED: Remove any inherited blur */
+}
+
+.modal-info p {
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0 0 12px 0;
+  text-align: left; /* <-- ADDED: Ensure left alignment */
+}
+
+
+#modal_product_details {
+  flex-grow: 1; /* Allow description to push button down */
+}
+
+/* Styles specific to the shop modal button */
+#product_modal .modal-button { /* Increased specificity */
+  background-color: #e0e0e0;
+  border: 1px solid #333333;
+  color: #333333;
+  padding: 10px 25px;
+  cursor: default; /* It's not clickable */
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 20px; /* Space above button */
+  align-self: flex-start; /* Align button to the left */
+  transition: background-color 0.2s ease;
+  flex-shrink: 0; /* Prevent button from shrinking */
+}
+/* No hover effect needed for disabled button */
+/* #product_modal .modal-button:hover { ... } */
+
+.fourth_screen {
+  margin-top: 15vh; /* Уменьшил отступ для примера */
+  position: relative;
+  padding: 2vw;
+}
+
+.fourth_screen h2 {
+  text-align: center;
+  /* margin-bottom: 30px; */ /* Заменяем на новое значение */
+  margin-bottom: 40px; /* <-- ДОБАВЛЕНО: Отступ под заголовком */
+  font-weight: 800;
+  filter: blur(1px);
+}
+
+/* --- Footer Styles --- */
+
+.footer {
+  height: 30vh;
+  width: 100%;
+  padding: 2vw;
+  background-color: #EBEBEB;
+  display: flex;
+  justify-content: space-between;
+  
+  box-sizing: border-box;
+  margin-top: auto; /* Or adjust margin of the element above */
+}
+
+/* Логотип HSE */
+.footer .hse_logo img {
+  display: block;
+  /* height: 40px; */ /* Старое значение */
+  height: 10vh;   /* <-- УВЕЛИЧЕНО */
+  width: auto;
+  margin-top:12vh;
+}
+
+/* Текстовый блок */
+.footer h3 {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 16px; /* Оставляем размер шрифта */
+  color: #000000;
+  text-align: right;
+  /* line-height: 1.5; */ /* Старое значение */
+  line-height: 1.3;   /* <-- УМЕНЬШЕНО */
+  margin: 0;
+  filter: none;
+  margin-top:12vh;
+}
+

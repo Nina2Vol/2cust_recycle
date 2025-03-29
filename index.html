@@ -4,31 +4,383 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2CUST CREATIVE RECYCLE CENTRE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="shortcut icon" href="./img/label.svg" type="image/x-icon">
     <!-- <script src="js/script.js"></script> -->
+
     <script type="importmap">
-        {
-          "imports": {
-            "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
-            "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js",
-            "GLTFLoader": "https://unpkg.com/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
-            "RectAreaLightUniformsLib": "https://unpkg.com/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
-          }
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.139.0/build/three.module.js",
+          "OrbitControls": "https://cdn.jsdelivr.net/npm/three@0.139.0/examples/jsm/controls/OrbitControls.js",
+          "GLTFLoader": "https://cdn.jsdelivr.net/npm/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
+          "RectAreaLightUniformsLib": "https://cdn.jsdelivr.net/npm/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
         }
-      </script>
-      <script src="js/office-model.js" type="module"></script>
+      }
+  </script>
+    <script src="js/shop.js" type="module" defer></script>
+    <script src="js/office-model.js" type="module" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/customization.js" defer></script>
+    <script src="js/recycle.js" defer></script>
+    <script src="js/upcycle.js" defer></script>
+
 
 </head>
 <body>
-    <div id="logo-container">
-        <img src="img/logo.svg" alt="Логотип">
-        <div class="logo-caption">ПУНКТ КРЕАТИВНОЙ ПЕРЕРАБОТКИ</div>
-    </div>
+  <div class="main-page-content">
+    <section class="section main visible" >
+      <div id="logo-container">
+          <img src="img/logo.svg" alt="Логотип">
+          <div class="logo-caption">ПУНКТ КРЕАТИВНОЙ ПЕРЕРАБОТКИ</div>
+      </div>
+      <div class="menu">
+      <button id="recycle_button">РЕСАЙКЛ</button>
+      <button id="upcycle_button">АПСАЙКЛ</button>
+      <button id="customization_button">КАСТОМИЗАЦИЯ</button>
+      </div>
+      <!-- Контейнер для рендера -->
+      <div class="three_office"></div>
+
+    </section>
+
+    <section class="second_screen">
+
+      <div class="blur_text">
+        <img src="img/blur_text.svg" alt="о нас">
+      </div>
+      <div class="gif_group">
+        <div class="gif_header">
+          <p class="gif_title">001.MP4</p>
+          <span class="close-btn">
+            <img src="img/cross.svg" alt="Закрыть">
+          </span>
+        </div>
+        <img src="img/кпрендер4.png" alt="пупуппу" width="360px">
+      </div>
+
+      <div class="gif_group">
+        <div class="gif_header">
+          <p class="gif_title">002.MP4</p>
+          <span class="close-btn">
+            <img src="img/cross.svg" alt="Закрыть">
+          </span>
+        </div>
+        <img src="img/кпрендер4.png" alt="пупуппу" width="280px">
+      </div>
     
 
-    <!-- Контейнер для рендера -->
-  <div class="three_office"></div>
+      <div class="gif_group">
+        <div class="gif_header">
+          <p class="gif_title">003.MP4</p>
+          <span class="close-btn">
+            <img src="img/cross.svg" alt="Закрыть">
+          </span>
+        </div>
+        <img src="img/кпрендер4.png" alt="пупуппу" width="200px">
+      </div>
+
+      <div class="gif_group">
+        <div class="gif_header">
+          <p class="gif_title">004.MP4</p>
+          <span class="close-btn">
+            <img src="img/cross.svg" alt="Закрыть">
+          </span>
+        </div>
+        <img src="img/кпрендер4.png" alt="пупуппу" width="160px">
+      </div>
+
+      <div class="gif_group">
+        <div class="gif_header">
+          <p class="gif_title">005.MP4</p>
+          <span class="close-btn">
+            <img src="img/cross.svg" alt="Закрыть">
+          </span>
+        </div>
+        <img src="img/кпрендер4.png" alt="пупуппу" width="250px">
+      </div>
+    </section>  
+
+    <!-- <section class="third_screen">
+      <h2>МАГАЗИН</h2>
+      <div id="cards">
+        <div class="card">
+          <img src="./img/stuff01.png" alt="">
+        </div>
+        <div class="card">
+          <img src="./img/stuff02.png" alt="">
+        </div>
+        <div class="card">
+          <img src="./img/stuff03.png" alt="">
+        </div>
+        <div class="card">
+          <img src="./img/stuff04.png" alt="">
+        </div>
+        <div class="card">
+          <img src="./img/stuff05.png" alt="">
+        </div>
+        <div class="card">
+          <img src="./img/stuff06.png" alt="">
+        </div>
+      
+      </div>
+      <div class="modal" id="product_modal">
+        <div class="modal-content">
+          <h2>Объект #02</h2>
+          <p>M/L<br>Унисекс</p>
+        </div>
+        <div class="product3d"></div> -->
+        <!-- написать себе 30 вьюпортов в css -->
+      <!-- </div>
+    </section> -->
+
+    <section class="third_screen">
+      <h2>МАГАЗИН</h2>
+      <div id="cards">
+        <!-- Добавляем data-index и подпись -->
+        <div class="card" data-index="0">
+          <img src="./img/stuff01.png" alt="Одежда 1">
+          <span class="card-number">#01</span>
+        </div>
+        <div class="card" data-index="1">
+          <img src="./img/stuff02.png" alt="Одежда 2">
+          <span class="card-number">#02</span>
+        </div>
+        <div class="card" data-index="2">
+          <img src="./img/stuff03.png" alt="Одежда 3">
+          <span class="card-number">#03</span>
+        </div>
+        <div class="card" data-index="3">
+          <img src="./img/stuff04.png" alt="Одежда 4">
+          <span class="card-number">#04</span>
+        </div>
+        <div class="card" data-index="4">
+          <img src="./img/stuff05.png" alt="Одежда 5">
+          <span class="card-number">#05</span>
+        </div>
+        <div class="card" data-index="5">
+          <img src="./img/stuff06.png" alt="Одежда 6">
+          <span class="card-number">#06</span>
+        </div>
+      </div>
+      <!-- Модальное окно -->
+      <div class="shopModal" id="product_modal">
+        <!-- Убрали кнопку закрытия отсюда -->
+        <div class="shopModal-content-wrapper">
+            <!-- Добавляем хедер модального окна -->
+            <div class="shopModal-header">
+                <span class="modal-art" id="modal_art_display">АРТ. 01022025</span> <!-- ID для JS -->
+                <button class="modal-close" id="modal_close_btn">×</button> <!-- Кнопка теперь здесь -->
+            </div>
+            <!-- Основное содержимое (колонки) -->
+            <div class="modal-body">
+                <div class="modal-3d-container" id="product3d_container">
+                    <!-- Canvas от Three.js будет вставлен сюда -->
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal_product_name">Объект #XX</h2>
+                    <p id="modal_product_details">
+                        M/L<br>
+                        УНИСЕКС<br>
+                        ДАННЫЙ НОСИМЫЙ ОБЪЕКТ СОЗДАН ИЗ X СВИТЕРОВ И Y КАРДИГАНОВ
+                    </p>
+                    <button class="modal-button">НЕТ В НАЛИЧИИ</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fourth_screen">
+      <h2>ГАЛЕРЕЯ</h2>
+      <div id="gallery_container">
+
+      </div>
+    </section>
+  </div>  
+
+  <section class="section recycle">
+    <div class="header">
+      <!-- Добавили стрелку ← и пробел -->
+      <button id="recycle_back">← НАЗАД</button>
+      <div id="logo-container">
+        <img src="img/logo.svg" alt="Логотип">
+        <div class="logo-caption">ПУНКТ КРЕАТИВНОЙ ПЕРЕРАБОТКИ</div>
+      </div>
+      <h3>РАСПРЕДЕЛИ<br>ОТХОДЫ</h3>
+    </div>
+
+    <div class="bins_container">
+      <div class="bin" data-type="glass">
+        <img class="bin_img" src="./img/bin_glass_open.png" alt="">
+        <img class="bin_img" src="./img/bin_glass.png" alt="">
+      </div>
+
+      <div class="bin" data-type="plastic">
+        <img class="bin_img" src="./img/bin_plastic_open.png" alt="">
+        <img class="bin_img" src="./img/bin_plastic.png" alt="">
+      </div>
+
+      <div class="bin" data-type="textile">
+        <img class="bin_img" src="./img/bin_textile_open.png" alt="">
+        <img class="bin_img" src="./img/bin_textile.png" alt="">
+      </div>
+
+      <div class="bin" data-type="paper">
+        <img class="bin_img" src="./img/bin_paper_open.png" alt="">
+        <img class="bin_img" src="./img/bin_paper.png" alt="">
+      </div>
+    </div>
+
+    <div class="modal" id="resultModal">
+      <div class="modal-content">
+          <div class="modal-title">ВЫ СПРАВИЛИСЬ!</div>
+          <div class="modal-stats" id="timeResult">ЗА 1МИН 43СЕК</div>
+          <div class="modal-stats" id="scoreResult">Правильно: 10 | Неправильно: 0</div>
+          <div class="modal-stats">ЭТОГО МАТЕРИАЛА ХВАТИТ, ЧТОБЫ<br>СОЗДАТЬ 1 ПРОДУКТ 2СUST</div>
+          <button class="modal-button" id="closeModal">OK</button>
+      </div>
+    </div>
+
+
+
+  </section>
+
+  <section class="section upcycle">
+
+    <div class="header">
+      <!-- Добавили стрелку ← и пробел -->
+      <button id="upcycle_back">← НАЗАД</button>
+      <div id="logo-container">
+        <img src="img/logo.svg" alt="Логотип">
+        <div class="logo-caption">ПУНКТ КРЕАТИВНОЙ ПЕРЕРАБОТКИ</div>
+      </div>
+      <h3>РАЗРЕЖЬ И СШЕЙ</h3>
+    </div>
+
+    <div class="mannequinn">
+      <img src="./img/mannequin.png" alt="">
+    </div>
+    
+    <div class="green_tshirt">
+      <div class="whole_clothes_div whole_green_tshirt" data-clothestype="greenTshirt">
+        <img class="whole_clothes" src="./img/tshirt_upcycle.png" alt="">
+      </div>
+    </div> 
+
+    <div class="black_tshirt">
+      <div class="whole_clothes_div whole_black_tshirt" data-clothestype="blackTshirt">
+        <img class="whole_clothes" src="./img/blackTshirt_upcycle.png" alt="">
+      </div>
+    </div> 
+
+    <div class="grey_sweater">
+      <div class="whole_clothes_div whole_grey_sweater" data-clothestype="greySweater">
+        <img class="whole_clothes" src="./img/sweater_upcycle.png" alt="">
+      </div>
+    </div> 
+
+    <div class="blue_jeans">
+      <div class="whole_clothes_div whole_blue_jeans" data-clothestype="blueJeans">
+        <img class="whole_clothes" src="./img/jeans_upcycle.png" alt="">
+      </div>
+    </div> 
+
+    <div class="denim_jacket">
+      <div class="whole_clothes_div whole_blue_jeans" data-clothestype="denimJacket">
+        <img class="whole_clothes" src="./img/jeansJacket_upcycle.png" alt="">
+      </div>
+    </div> 
+
+    <div class="blue_hoodie">
+      <div class="whole_clothes_div whole_blue_hoodie" data-clothestype="blueHoodie">
+        <img class="whole_clothes" src="./img/hoodie_upcycle.png" alt="">
+      </div>
+    </div> 
+
+  </section>
+
+  <section class="section customization">
+    <!-- //упаковать в хедер блока и добавить туда кнопку и save.info  -->
+    <div class="header">
+      <button id="customization_back">← НАЗАД</button>
+      <div id="logo-container">
+        <img src="img/logo.svg" alt="Логотип">
+        <div class="logo-caption">ПУНКТ КРЕАТИВНОЙ ПЕРЕРАБОТКИ</div>
+      </div>
+      <!-- УБЕДИСЬ, ЧТО H3 ЗДЕСЬ, А НЕ ВНЕ HEADER -->
+      <h3>КАСТОМИЗИРУЙ<br>ФУТБОЛКУ</h3> <!-- Изменим текст на более подходящий -->
+    </div>
+    <!-- КОНЕЦ БЛОКА .header -->
+
+    <div class="save_info" id="save_Info"></div>
+    <div class="design_container">
+      <div class="canvas_container">
+        <canvas id="tshirt_base_canvas" class="canvas_layer"></canvas>
+        <canvas id="tshirt_drawing_canvas" class="canvas_layer"></canvas>
+      </div>
+
+      <div class="controls">
+
+        <div class="control_group">
+          <label for="color_picker">Цвет:</label>
+          <input type="color" id="color_picker" value="#000000">
+        </div>
+
+        <div class="control_group">
+          <label>Кисти:</label>
+          <div class="brush_buttons">
+
+            <button id="normal_brush_btn" class="brush_btn active">
+              Обычная
+            </button>
+
+            <button id="pencil_brush_btn" class="brush_btn">
+              Карандаш
+            </button>
+
+            <button id="marker_brush_btn" class="brush_btn">
+              Маркер
+            </button>
+
+            <button id="airbrush_brush_btn" class="brush_btn">
+              Спрей
+            </button>
+
+            <button id="eraser_brush_btn" class="brush_btn">
+              Ластик
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="control_group">
+          <label for="brush_size">Размер кисти: <span id="brush_size_value">1
+          </span></label>
+          <input type="range" id="brush_size" min="1" max="30" value="1">
+        </div>
+
+        <div class="control_group">
+          <button id="clear_button">Очистить</button>
+          <button id="publish_button">Опубликовать</button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="footer">
+    <div class="hse_logo"><img src="./img/hse_logo.svg" alt=""></div>
+    <!-- <div class="recycle_sign"><img src="./img/recycle_sign.svg" alt=""></div> -->
+    <h3>Нина Волощенко <br> б24дз10 <br> Куратор: <br> Даша Зародина</h3>
+  </section>
 
 </body>
 </html>

@@ -1,0 +1,130 @@
+/* --- Кнопка "Назад" --- */
+#upcycle_back {
+    font-family: 'Roboto Condensed';
+    background: none; /* Убираем фон */
+    border: none; /* Убираем рамку */
+    color: #000; /* Цвет текста (черный, как на макете) */
+    font-size: 18px; /* Размер шрифта (подберите) */
+    cursor: pointer; /* Указатель при наведении */
+    padding: 0; /* Убираем внутренние отступы, если мешают */
+    /* Можно добавить немного отступа справа, если нужно */
+    /* margin-right: auto; */ /* Это не нужно при justify-content: space-between */
+  }
+  
+  /* --- Манекен --- */
+.mannequinn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Увеличьте эти значения */
+    width: 15vw;      /* Было, например, 15vw */
+    max-width: 250px; /* Было, например, 250px */
+    z-index: 1;
+  }
+  
+  .mannequinn img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* --- Общие стили для контейнеров с одеждой --- */
+  .green_tshirt,
+  .black_tshirt,
+  .grey_sweater,
+  .blue_jeans,
+  .denim_jacket,
+  .blue_hoodie {
+    position: absolute;
+    z-index: 5;
+  }
+  
+  /* Стили для изображений внутри контейнеров */
+  .whole_clothes_div img.whole_clothes {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* --- Позиционирование и размеры конкретной одежды (с vw/vh) --- */
+  /* (Значения подобраны примерно, возможно, потребуется корректировка) */
+  
+  .green_tshirt {
+    top: 15vh; /* Отступ сверху относительно высоты вьюпорта */
+    left: 18vw; /* Отступ слева относительно ширины вьюпорта */
+    width: 28vw; /* Ширина относительно ширины вьюпорта */
+    max-width: 300px; /* Ограничение максимальной ширины */
+  }
+  
+  .grey_sweater {
+    top: 38vh;
+    left: 5vw;
+    width: 28vw;
+    max-width: 320px;
+    transform: rotate(-25deg);
+  }
+  
+  .blue_jeans {
+    bottom: 5vh; /* Отступ снизу относительно высоты вьюпорта */
+    left: 15vw;
+    width: 25vw;
+    max-width: 280px;
+  }
+  
+  .denim_jacket {
+    top: 12vh;
+    right: 5vw; /* Отступ справа относительно ширины вьюпорта */
+    width: 35vw;
+    max-width: 400px;
+    transform: rotate(5deg);
+    z-index: 6;
+  }
+  
+  .blue_hoodie {
+    top: 30vh;
+    right: 10vw;
+    width: 32vw;
+    max-width: 350px;
+    z-index: 5;
+  }
+  
+  .black_tshirt {
+    bottom: 3vh;
+    right: 3vw;
+    width: 30vw;
+    max-width: 330px;
+    transform: rotate(-10deg);
+  }
+
+  .clothing-piece {
+    /* ... ваши существующие стили ... */
+    position: absolute;
+    cursor: grab;
+    height: auto; /* Или задайте размер в vw/vh */
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: center center; /* !!! ВАЖНО для вращения вокруг центра !!! */
+    transition: outline 0.1s ease; /* Плавность для рамки */
+    /* Убираем начальный transform, если он был задан здесь */
+  }
+  
+  .clothing-piece.selected {
+    outline: 2px solid red;
+    outline-offset: 2px;
+    /* Курсор grabbing будет устанавливаться динамически через JS */
+  }
+  
+  .clothing-piece.grabbing {
+      cursor: grabbing;
+  }
+  
+  .clothing-piece.rotating {
+      cursor: alias; /* Или другой курсор для вращения, например 'move' или кастомный */
+  }
+
+  .section.upcycle {
+    overflow: hidden;
+  }
+
+  
