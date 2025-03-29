@@ -1,6 +1,644 @@
-@media only screen and (min-device-width: 700px) and (max-device-width: 1024px) {
+/* @media only screen and (min-device-width: 700px) and (max-device-width: 1024px) {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 700px) {
+} */
+
+/* responsive.css */
+
+/* --- Общие правила для адаптивности --- */
+/* Уменьшаем базовый размер шрифта на маленьких экранах */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Чуть меньше базовый шрифт */
+    }
+    h1, h2, .bold-text {
+       font-size: 18px; /* Уменьшаем заголовки */
+    }
+    h3 { /* Общий стиль для H3, если он используется где-то еще */
+        font-size: 16px;
+    }
 }
 
+/* --- Медиа-запросы для разных разрешений --- */
+
+/* === Большие Планшеты и Маленькие Ноутбуки (<= 1200px) === */
+@media (max-width: 1200px) {
+    /* --- Layout --- */
+    #logo-container img {
+        max-width: 350px; /* Чуть меньше лого */
+    }
+
+    /* --- Магазин (Third Screen) --- */
+    #cards {
+        gap: 3vw; /* Немного увеличим отступ */
+    }
+    .card {
+        /* Оставляем 3 колонки, но можно чуть увеличить мин. ширину */
+         min-width: 280px;
+    }
+
+    /* --- Галерея (Fourth Screen) --- */
+     #gallery_container {
+        grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+        gap: 3vw;
+    }
+
+    /* --- Кастомизация --- */
+    .controls {
+        width: 280px; /* Немного сужаем панель */
+    }
+    .brush_buttons {
+        /* Пока оставляем 3 колонки */
+    }
+
+}
+
+/* === Планшеты (<= 992px) === */
+@media (max-width: 992px) {
+    /* --- Layout --- */
+    #logo-container img {
+        max-width: 300px; /* Еще меньше лого */
+    }
+    .logo-caption {
+        font-size: 14px;
+    }
+    .menu {
+        margin-top: 2vh; /* Ближе к верху */
+        margin-left: 3vw;
+    }
+    #recycle_button,
+    #upcycle_button,
+    #customization_button {
+        font-size: 15px;
+    }
+    .three_office {
+        height: calc(100vh - 80px); /* Пример: чуть меньше высота под 3D */
+    }
+
+    /* --- О нас (Second Screen) --- */
+    .blur_text {
+       display: none; /* Скрываем десктопный текст */
+    }
+    .blur_text_pad { /* Показываем планшетный */
+       display: flex;
+       visibility: visible;
+       justify-content: center;
+       filter: blur(1px);
+       margin-bottom: 30px;
+    }
+    .blur_text_pad img {
+       max-width: 95vw;
+       height: auto;
+    }
+    .gif_group img {
+      /* Можно немного уменьшить гифки, если нужно */
+      /* max-width: 90%; */
+    }
+
+    /* --- Магазин (Third Screen) --- */
+    #cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+        gap: 4vw;
+    }
+    .card {
+       width: calc((100% - 4vw) / 2); /* Пересчитываем ширину */
+       min-width: 200px; /* Уменьшаем мин. ширину */
+       max-width: 350px;
+    }
+
+    /* --- Модальное окно магазина --- */
+    .shopModal-content-wrapper {
+        width: 90%; /* Шире на планшете */
+        min-height: 65vh;
+        max-height: 85vh;
+    }
+    .modal-body {
+        /* Пока оставляем 2 колонки, но можно изменить пропорции */
+        /* flex-direction: column; */ /* Раскомментировать для вертикального стека */
+    }
+    /* Если стекать вертикально: */
+    /* .modal-3d-container {
+        flex: 1;
+        width: 100%;
+        height: 45vh;
+        border-right: none;
+        border-bottom: 1px solid #000;
+    }
+    .modal-info {
+        flex: 1;
+        width: 100%;
+        padding: 25px;
+    } */
+    .modal-info h2 {
+        font-size: 1.8em;
+    }
+    .modal-info p {
+        font-size: 1em;
+    }
+     #product_modal .modal-button {
+        padding: 8px 20px;
+        font-size: 0.9em;
+     }
+
+    /* --- Галерея (Fourth Screen) --- */
+     #gallery_container {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+        gap: 4vw;
+    }
+
+    /* --- Recycle --- */
+    .section.recycle .header {
+        padding: 20px 30px;
+    }
+    .section.recycle .header h3 {
+        font-size: 16px; /* Уменьшаем заголовок */
+        text-align: center; /* Центрируем */
+        flex-basis: 100%; /* Занимает всю ширину */
+        order: 3; /* Перемещаем вниз */
+        margin-top: 10px;
+    }
+     #recycle_back {
+         order: 1; /* Кнопка назад слева */
+     }
+     .section.recycle .header #logo-container {
+         position: static; /* Убираем абсолютное позиционирование */
+         transform: none;
+         order: 2; /* Лого по центру */
+         margin: 0 auto; /* Центрируем лого */
+     }
+    .bins_container {
+        padding: 0 2%; /* Меньше отступы по бокам */
+        bottom: 3vh;
+        flex-wrap: wrap; /* Разрешаем перенос */
+        justify-content: center; /* Центрируем */
+        gap: 15px; /* Отступ между корзинами при переносе */
+    }
+    .bin {
+        width: 40%; /* По 2 корзины в ряду */
+        max-width: 130px; /* Уменьшаем макс. размер */
+        margin-bottom: 10px; /* Отступ снизу для рядов */
+    }
+    .item {
+        width: 60px; /* Уменьшаем мусор */
+        height: 60px;
+    }
+    /* Модальное окно Recycle */
+    #resultModal .modal-content {
+        padding: 20px 30px;
+        min-width: 280px;
+    }
+    #resultModal .modal-title { font-size: 1.3rem; }
+    #resultModal .modal-stats { font-size: 0.9rem; }
+    #resultModal .modal-button { font-size: 0.9rem; padding: 8px 20px; }
+
+
+    /* --- Upcycle --- */
+    /* Стилизация Upcycle на планшетах может потребовать значительных изменений
+       из-за абсолютного позиционирования vw/vh.
+       Простой вариант - уменьшить размеры и немного подвинуть. */
+    .mannequinn {
+       width: 20vw;
+       max-width: 200px;
+    }
+    /* Пример корректировки для одной вещи, примените к остальным */
+    .green_tshirt {
+        top: 18vh;
+        left: 15vw;
+        width: 35vw;
+        max-width: 250px;
+    }
+     .grey_sweater {
+        top: 40vh;
+        left: 8vw;
+        width: 35vw;
+        max-width: 270px;
+     }
+     /* ... и так далее для .blue_jeans, .denim_jacket ... */
+    .blue_jeans {
+        bottom: 8vh;
+        left: 18vw;
+        width: 30vw;
+        max-width: 240px;
+      }
+    .denim_jacket {
+        top: 15vh;
+        right: 8vw;
+        width: 40vw;
+        max-width: 320px;
+      }
+     .blue_hoodie {
+        top: 35vh;
+        right: 12vw;
+        width: 38vw;
+        max-width: 300px;
+     }
+     .black_tshirt {
+        bottom: 5vh;
+        right: 5vw;
+        width: 35vw;
+        max-width: 280px;
+     }
+
+    /* --- Customization --- */
+    .section.customization .header {
+         padding: 20px 30px;
+         /* Можно применить ту же логику, что и в Recycle Header */
+         flex-wrap: wrap;
+         justify-content: center;
+    }
+     .section.customization .header h3 {
+         font-size: 16px;
+         text-align: center;
+         flex-basis: 100%;
+         order: 3;
+         margin-top: 10px;
+     }
+     #customization_back { order: 1; position: absolute; left: 30px; top: 28px; } /* Позиционируем назад */
+     .section.customization .header #logo-container {
+         position: static;
+         transform: none;
+         order: 2;
+         margin: 0 auto;
+     }
+
+    .design_container {
+        padding: 0 30px 20px 30px; /* Уменьшаем отступы */
+        /* Можно уже начать стекать вертикально */
+        /* flex-direction: column; */
+        /* gap: 15px; */
+    }
+     /* Если стекать */
+     /* .canvas_container {
+         height: 55vh;
+         width: 100%;
+     }
+     .controls {
+         width: 100%;
+         max-height: 30vh;
+         overflow-y: auto;
+         padding: 15px;
+     } */
+    .controls { /* Если НЕ стекать, сужаем еще */
+       width: 240px;
+    }
+     .brush_buttons {
+         grid-template-columns: repeat(2, 1fr); /* 2 колонки для кнопок кистей */
+     }
+     .controls button { /* Уменьшаем кнопки */
+        padding: 0.6rem;
+     }
+     .brush_btn {
+         padding: 0.4rem;
+         font-size: 0.75rem;
+     }
+
+    /* --- Footer --- */
+    .footer {
+        height: auto; /* Авто-высота */
+        padding: 20px 30px; /* Уменьшаем паддинг */
+        flex-direction: column; /* Стекаем вертикально */
+        align-items: center; /* Центрируем */
+        gap: 15px; /* Отступ между элементами */
+    }
+    .footer .hse_logo img {
+        height: 8vh; /* Чуть меньше логотип */
+        margin-top: 0; /* Убираем верхний отступ */
+        order: 2; /* Лого после текста */
+    }
+    .footer h3 {
+        text-align: center; /* Центрируем текст */
+        margin-top: 0;
+        order: 1; /* Текст перед лого */
+        line-height: 1.4;
+    }
+}
+
+
+/* === Маленькие Планшеты и Телефоны (<= 768px) === */
+@media (max-width: 768px) {
+    /* --- Layout --- */
+    #logo-container {
+        top: 15px; /* Ближе к верху */
+    }
+    #logo-container img {
+        max-width: 250px; /* Еще меньше лого */
+    }
+    .menu {
+        position: static; /* Убираем абсолютное позиционирование */
+        flex-direction: row; /* Меню в строку */
+        justify-content: center; /* Центрируем */
+        gap: 15px; /* Отступ между кнопками */
+        margin: 15px 0; /* Отступы сверху/снизу */
+        padding: 0 15px;
+        width: 100%;
+        box-sizing: border-box;
+        order: 2; /* Порядок в flex-контейнере .main */
+    }
+     #recycle_button,
+     #upcycle_button,
+     #customization_button {
+         margin-bottom: 0; /* Убираем нижний отступ */
+         text-align: center;
+         font-size: 14px;
+     }
+     .section.main {
+         /* Если .menu стало static, нужно перестроить flex */
+         display: flex;
+         flex-direction: column;
+         /* min-height остаётся 100vh */
+     }
+     #logo-container { /* Перемещаем лого в потоке */
+         position: relative;
+         transform: none;
+         left: auto;
+         top: auto;
+         margin: 20px auto 0 auto; /* Отступ сверху, авто по бокам */
+         order: 1;
+     }
+     .three_office {
+         height: 65vh; /* Значительно уменьшаем высоту 3D на телефонах */
+         width: 100%; /* Явно задаем ширину */
+         order: 3;
+     }
+
+    /* --- О нас (Second Screen) --- */
+    .blur_text_pad {
+        display: none; /* Скрываем планшетный текст */
+        visibility: hidden;
+    }
+    .blur_text_phone { /* Показываем телефонный */
+        display: flex;
+        visibility: visible;
+        justify-content: center;
+        filter: blur(1px);
+        margin-bottom: 20px;
+    }
+    .blur_text_phone img {
+       max-width: 95vw;
+       height: auto;
+    }
+    .second_screen {
+        padding-top: 5vh; /* Меньше отступ сверху */
+    }
+    /* Гифки можно сделать меньше или изменить их позиционирование/количество в JS */
+    .gif_group {
+        max-width: 70vw; /* Ограничиваем ширину гифок */
+    }
+    .gif_group img {
+         width: 100%; /* Картинка подстраивается под контейнер */
+         height: auto;
+    }
+    .gif_title { font-size: 16px; }
+    .close-btn img { width: 24px; height: 24px;} /* Уменьшаем крестик */
+
+    /* --- Магазин (Third Screen) --- */
+    .third_screen {
+        padding: 3vh 4vw 4vw 4vw; /* Уменьшаем паддинги */
+    }
+    .third_screen h2 {
+        margin-bottom: 20px;
+        font-size: 1.5em;
+    }
+    #cards {
+        grid-template-columns: 1fr; /* 1 колонка */
+        gap: 20px; /* Фиксированный отступ */
+    }
+    .card {
+       width: 80%; /* Ширина карточки */
+       max-width: 300px; /* Макс. ширина */
+       margin: 0 auto; /* Центрируем */
+       min-width: unset; /* Убираем мин. ширину */
+    }
+
+     /* --- Модальное окно магазина --- */
+     .shopModal-content-wrapper {
+         width: 95%; /* Почти на всю ширину */
+         min-height: 70vh;
+         max-height: 90vh;
+     }
+     .modal-body {
+         flex-direction: column; /* Стекаем вертикально */
+     }
+     .modal-3d-container {
+         flex: none; /* Убираем flex grow/shrink */
+         width: 100%; /* Полная ширина */
+         height: 40vh; /* Фиксированная высота для 3D */
+         min-height: 250px; /* Минимальная высота */
+         border-right: none;
+         border-bottom: 1px solid #000;
+     }
+     .modal-info {
+         flex: none;
+         width: 100%;
+         padding: 20px; /* Уменьшаем паддинг */
+         /* Можно добавить overflow-y: auto, если контент не помещается */
+         max-height: 45vh;
+         overflow-y: auto;
+     }
+      .modal-info h2 {
+         font-size: 1.6em;
+         margin-bottom: 10px;
+     }
+     .modal-info p {
+         font-size: 0.95em;
+         line-height: 1.5;
+     }
+     #product_modal .modal-button {
+        width: 100%; /* Кнопка на всю ширину */
+        padding: 12px;
+        font-size: 1em;
+        margin-top: 15px;
+        align-self: center; /* Центрируем */
+     }
+     .modal-art { font-size: 1em; }
+     .modal-close { width: 30px; height: 30px; font-size: 20px; }
+
+    /* --- Галерея (Fourth Screen) --- */
+    .fourth_screen {
+        margin-top: 10vh;
+    }
+     #gallery_container {
+        grid-template-columns: 1fr; /* 1 колонка */
+        gap: 25px; /* Фиксированный отступ */
+        padding: 0 4vw 30px 4vw;
+    }
+     .gallery-item {
+         max-width: 80%; /* Ограничиваем ширину */
+         margin: 0 auto; /* Центрируем */
+     }
+
+    /* --- Recycle --- */
+     .section.recycle .header {
+         padding: 15px 20px;
+     }
+      .section.recycle .header h3 {
+          font-size: 14px;
+      }
+     #recycle_back {
+         font-size: 16px;
+         left: 20px;
+         top: 22px;
+      }
+    .bins_container {
+        gap: 10px;
+        padding: 0 5%;
+    }
+    .bin {
+        width: 45%; /* Оставляем 2 в ряд */
+        max-width: 110px;
+    }
+    .item {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* --- Upcycle --- */
+    /* На телефонах абсолютное позиционирование vw/vh становится совсем ненадежным.
+       Лучшим решением было бы переделать логику появления вещей в JS для мобильных,
+       например, сделать их статичными или в скролл-контейнере.
+       CSS-only решение: сильно уменьшить и перепозиционировать, но это "костыль". */
+    .section.upcycle .header { /* Стилизуем хедер как в других секциях */
+         padding: 15px 20px;
+         flex-wrap: wrap;
+         justify-content: center;
+    }
+     .section.upcycle .header h3 {
+         font-size: 14px;
+         text-align: center;
+         flex-basis: 100%;
+         order: 3;
+         margin-top: 10px;
+     }
+     #upcycle_back {
+         font-size: 16px;
+         order: 1;
+         position: absolute;
+         left: 20px;
+         top: 22px;
+     }
+     .section.upcycle .header #logo-container {
+         position: static;
+         transform: none;
+         order: 2;
+         margin: 0 auto;
+     }
+    .mannequinn {
+        width: 25vw; /* Еще меньше */
+        max-width: 150px;
+        top: 55%; /* Смещаем чуть ниже из-за хедера */
+    }
+    /* Прячем исходные вещи - предполагаем, что JS будет их генерировать по-другому */
+    /* Если JS не меняется, то нужно будет подобрать очень маленькие значения vw/vh */
+     .green_tshirt, .black_tshirt, .grey_sweater, .blue_jeans, .denim_jacket, .blue_hoodie {
+         /* Пример: Попробовать сделать их меньше и ближе к краям */
+         width: 40vw;
+         max-width: 130px;
+         /* Конкретные top/left/right/bottom потребуют точной подгонки */
+         /* ИЛИ display: none; если JS обработает */
+     }
+    /* Кусочки после "взрыва" (.clothing-piece) - их размер управляется pieceScale в JS,
+       а позиционирование зависит от explosionFactor/Randomness. Возможно, нужно
+       уменьшить pieceScale в JS для мобильных. */
+
+
+    /* --- Customization --- */
+    .section.customization .header {
+         padding: 15px 20px;
+    }
+     .section.customization .header h3 {
+         font-size: 14px;
+     }
+     #customization_back { left: 20px; top: 22px; }
+
+    .design_container {
+        flex-direction: column; /* Однозначно вертикально */
+        padding: 0 20px 15px 20px;
+        gap: 15px;
+        /* Обеспечиваем, чтобы контейнер занимал оставшуюся высоту */
+        height: calc(100vh - 110px); /* Примерная высота хедера customization */
+        min-height: 0; /* Важно для flex */
+    }
+    .canvas_container {
+        height: auto; /* Высота по содержимому, но с aspect-ratio */
+        aspect-ratio: 1 / 1; /* Делаем канвас квадратным или другим соотношением */
+        width: 100%; /* На всю ширину */
+        max-height: 50vh; /* Ограничиваем макс. высоту */
+        flex-shrink: 0; /* Не сжимать */
+    }
+    .controls {
+        width: 100%; /* На всю ширину */
+        padding: 10px;
+        flex-grow: 1; /* Занимает оставшееся место */
+        overflow-y: auto; /* Включаем скролл для контролов */
+        min-height: 0; /* Важно для flex */
+    }
+    .control_group {
+        gap: 0.4rem;
+    }
+    .brush_buttons {
+        grid-template-columns: repeat(3, 1fr); /* Снова 3 колонки, если влезут */
+        gap: 3px;
+    }
+    .controls button {
+        padding: 0.6rem;
+    }
+
+    /* --- Footer --- */
+     .footer .hse_logo img {
+        height: 6vh;
+    }
+     .footer h3 {
+        font-size: 12px; /* Очень маленький шрифт, осторожно */
+        line-height: 1.5;
+    }
+
+}
+
+/* === Очень маленькие телефоны (<= 480px) === */
+@media (max-width: 480px) {
+     /* --- Layout --- */
+    #logo-container img {
+        max-width: 200px;
+    }
+    .menu {
+        gap: 10px;
+    }
+     #recycle_button,
+     #upcycle_button,
+     #customization_button {
+         font-size: 13px;
+     }
+     .three_office {
+         height: 60vh;
+     }
+
+     /* --- Магазин (Third Screen) --- */
+     .card {
+         width: 90%;
+     }
+     /* Модалка магазина */
+     .modal-info h2 { font-size: 1.4em; }
+     .modal-info p { font-size: 0.9em; }
+
+     /* --- Recycle --- */
+     .bin {
+        width: 80%; /* По одной корзине в ряд */
+        max-width: 120px;
+        margin: 0 auto 10px auto; /* Центрируем одну корзину */
+    }
+
+    /* --- Customization --- */
+    .brush_buttons {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на самых маленьких */
+    }
+     .controls button {
+         padding: 0.5rem;
+         font-size: 0.9em;
+     }
+
+     /* --- Footer --- */
+     .footer h3 {
+        font-size: 11px;
+     }
+}

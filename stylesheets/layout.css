@@ -136,6 +136,16 @@ h2 {
   height: auto;
 }
 
+.blur_text_pad {
+  visibility: hidden;
+  display: none;
+}
+
+.blur_text_phone{
+visibility: hidden;
+display: none;
+}
+
 .gif_group {
   display: flex;
   flex-direction: column;
