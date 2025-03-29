@@ -12,7 +12,7 @@ const itemImages = {
 };
 
 const itemTypes = Object.keys(itemImages);
-const itemsCount = 5; //потом можно увеличить//
+const itemsCount = 5; 
 let itemsRemaining = itemsCount * itemTypes.length;
 let correct = 0;
 let incorrect = 0;

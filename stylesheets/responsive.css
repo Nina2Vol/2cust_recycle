@@ -1,76 +1,78 @@
-/* responsive.css */
 
-/* --- Общие правила для адаптивности --- */
+
+
 @media (max-width: 768px) {
     body { font-size: 14px; }
     h1, h2, .bold-text { font-size: 18px; }
     h3 { font-size: 16px; }
 }
 
-/* --- Медиа-запросы для разных разрешений --- */
 
-/* === Большие Планшеты и Маленькие Ноутбуки (<= 1200px) === */
+
+
 @media (max-width: 1200px) {
-    /* --- Layout --- */
-    /* Общее масштабирование логотипа */
+   
+   
     #logo-container img { max-width: 350px; }
 
-    /* --- Магазин (Third Screen) --- */
+    
+
+   
     #cards { gap: 3vw; }
     .card { min-width: 280px; }
 
-    /* --- Галерея (Fourth Screen) --- */
+   
     #gallery_container { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 30px 30px 30px; }
 
-    /* --- Кастомизация --- */
+   
     .controls { width: 280px; }
     .brush_buttons { }
 }
 
-/* === Планшеты (<= 992px) === */
+
 @media (max-width: 992px) {
-    /* --- Layout --- */
-    /* Общее масштабирование логотипа */
+   
+   
     #logo-container img { max-width: 300px; }
     .logo-caption { font-size: 14px; }
     .menu { margin-top: 2vh; margin-left: 3vw; }
     #recycle_button, #upcycle_button, #customization_button { font-size: 15px; }
     .three_office { height: calc(100vh - 80px); }
 
-    /* --- О нас (Second Screen) --- */
+   
     .blur_text { display: none; visibility: hidden; }
     .blur_text_pad { display: flex; visibility: visible; justify-content: center; filter: blur(1px); margin-bottom: 30px; }
     .blur_text_pad img { max-width: 95vw; height: auto; }
     .gif_group img { }
 
-    /* --- Магазин (Third Screen) --- */
+   
     #cards { grid-template-columns: repeat(2, 1fr); gap: 4vw; }
     .card { width: calc((100% - 4vw) / 2); min-width: 200px; max-width: 350px; }
 
-    /* --- Модальное окно магазина --- */
+   
     .shopModal-content-wrapper { width: 90%; min-height: 65vh; max-height: 85vh; }
     .modal-body { }
     .modal-info h2 { font-size: 1.8em; }
     .modal-info p { font-size: 1em; }
      #product_modal .modal-button { padding: 8px 20px; font-size: 0.9em; }
 
-    /* --- Галерея (Fourth Screen) --- */
+   
     #gallery_container { grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 20px 30px 20px; }
 
-    /* --- Game Headers (Recycle, Upcycle, Customization) --- */
-    /* Стили для самого хедера (padding и т.д.) */
+   
+   
     .section.recycle .header,
     .section.upcycle .header,
     .section.customization .header {
         padding: 20px 25px;
-        /* Убедимся, что justify-content правильный */
+       
         justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
     }
-    /* УДАЛЕНЫ правила для logo-container img и logo-caption внутри хедеров */
+   
 
-    /* Стили для оставшихся элементов хедера */
+   
     .section.recycle .header h3,
     .section.upcycle .header h3,
     .section.customization .header h3 {
@@ -84,7 +86,7 @@
         text-align: left;
     }
 
-    /* --- Recycle Specifics --- */
+   
     .bins_container { padding: 0 2%; bottom: 3vh; flex-wrap: wrap; justify-content: center; gap: 15px; }
     .bin { width: 40%; max-width: 130px; margin-bottom: 10px; }
     .item { width: 60px; height: 60px; }
@@ -93,7 +95,7 @@
     #resultModal .modal-stats { font-size: 0.9rem; }
     #resultModal .modal-button { font-size: 0.9rem; padding: 8px 20px; }
 
-    /* --- Upcycle Specifics --- */
+   
     .mannequinn { width: 20vw; max-width: 200px; }
     .green_tshirt { top: 18vh; left: 15vw; width: 35vw; max-width: 250px; }
     .grey_sweater { top: 40vh; left: 8vw; width: 35vw; max-width: 270px; }
@@ -102,51 +104,51 @@
     .blue_hoodie { top: 35vh; right: 12vw; width: 38vw; max-width: 300px; }
     .black_tshirt { bottom: 5vh; right: 5vw; width: 35vw; max-width: 280px; }
 
-    /* --- Customization Specifics --- */
+   
     .design_container { padding: 0 30px 20px 30px; }
     .controls { width: 240px; }
     .brush_buttons { grid-template-columns: repeat(2, 1fr); }
     .controls button { padding: 0.6rem; }
     .brush_btn { padding: 0.4rem; font-size: 0.75rem; }
 
-    /* --- Footer --- */
+   
     .footer { height: auto; padding: 20px 30px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 15px; }
     .footer .hse_logo img { height: 6vh; margin-top: 0; order: initial; }
     .footer h3 { text-align: right; margin-top: 0; order: initial; line-height: 1.4; font-size: 14px; }
 }
 
 
-/* === Маленькие Планшеты и Телефоны (<= 768px) === */
+
 @media (max-width: 768px) {
-    /* --- Layout --- */
-     /* Общее масштабирование логотипа */
+   
+    
     #logo-container img { max-width: 250px; }
     .logo-caption {
-        /* УДАЛИТЬ ИЛИ ЗАКОММЕНТИРОВАТЬ ЭТУ СТРОКУ: */
-        /* display: none; */
-        /* Оставляем или корректируем размер шрифта, если нужно */
-        font-size: 12px; /* Например, немного меньше */
-        margin-top: 3px; /* Уменьшаем отступ */
+       
+       
+       
+        font-size: 12px;
+        margin-top: 3px;
     }
 
     .section.main {
         display: flex;
         flex-direction: column;
         padding-top: 0;
-        /* ИЗМЕНЕНО: Возвращаем min-height и добавляем overflow */
-        height: 100vh; /* Можно задать жестко 100vh */
-        min-height: 100vh; /* Возвращаем минимальную высоту */
-        overflow: hidden; /* Скрываем любое переполнение контента */
+       
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
     }
     #logo-container { position: relative; transform: none; left: auto; top: auto; margin: 10px auto 0 auto; order: 1; }
     
-    /* --- СТИЛИ ДЛЯ MOBILE-PROMPT --- */
+   
     .mobile-prompt {
         position: relative;
-        display: block; /* Показываем */
-        /* Убедимся, что НЕТ position: absolute */
-        margin-top: 20vh; /* Отступ сверху */
-        margin-bottom: 2vh; /* Отступ снизу */
+        display: block;
+       
+        margin-top: 20vh;
+        margin-bottom: 2vh;
         padding: 8px 12px;
         background-color: rgba(0, 0, 0, 0.6);
         color: #ffffff;
@@ -156,30 +158,30 @@
         border-radius: 4px;
         max-width: 220px;
         text-align: center;
-        /* order: 2; */ /* Убираем order */
+       
         flex-shrink: 0;
     }
-    /* --- КОНЕЦ СТИЛЕЙ ДЛЯ MOBILE-PROMPT --- */
+   
 
 
 
     .menu { display: none; }
     .three_office { height: 25vh; width: 50%; order: 3; margin-top: 15px; flex-shrink: 0; margin-bottom: 40px; }
 
-    /* --- О нас (Second Screen) --- */
+   
     .second_screen { padding-top: 1vh; display: block; position: relative; }
     .gif_group { max-width: 70vw; }
     .gif_group img { width: 100%; height: auto; }
     .gif_title { font-size: 16px; }
     .close-btn img { width: 24px; height: 24px;}
 
-    /* --- Магазин (Third Screen) --- */
+   
     .third_screen { padding: 3vh 4vw 4vw 4vw; }
     .third_screen h2 { margin-bottom: 20px; font-size: 1.5em; }
     #cards { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .card { width: 80%; max-width: 300px; margin: 0; min-width: unset; }
 
-     /* --- Модальное окно магазина --- */
+    
      .shopModal-content-wrapper { width: 95%; min-height: 70vh; max-height: 90vh; }
      .modal-body { flex-direction: column; }
      .modal-3d-container { flex: none; width: 100%; height: 40vh; min-height: 250px; border-right: none; border-bottom: 1px solid #000; }
@@ -190,12 +192,12 @@
      .modal-art { font-size: 1em; }
      .modal-close { width: 30px; height: 30px; font-size: 20px; }
 
-    /* --- Галерея (Fourth Screen) --- */
+   
     .fourth_screen { margin-top: 10vh; }
     #gallery_container { grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 15px 30px 15px; }
 
-     /* --- Game Headers (Recycle, Upcycle, Customization) --- */
-     /* Стили для самого хедера (padding и т.д.) */
+    
+    
     .section.recycle .header,
     .section.upcycle .header,
     .section.customization .header {
@@ -204,9 +206,9 @@
         align-items: center;
         flex-wrap: nowrap;
     }
-    /* УДАЛЕНЫ правила для logo-container img и logo-caption внутри хедеров */
+   
 
-    /* Стили для оставшихся элементов хедера */
+   
      .section.recycle .header h3,
      .section.upcycle .header h3,
      .section.customization .header h3 {
@@ -219,16 +221,16 @@
           white-space: nowrap;
       }
 
-    /* --- Recycle Specifics --- */
+   
     .bins_container { gap: 10px; padding: 0 5%; }
     .bin { width: 45%; max-width: 110px; }
     .item { width: 50px; height: 50px; }
 
-    /* --- Upcycle Specifics --- */
+   
     .mannequinn { width: 25vw; max-width: 150px; top: 55%; }
     .green_tshirt, .black_tshirt, .grey_sweater, .blue_jeans, .denim_jacket, .blue_hoodie { width: 40vw; max-width: 130px; }
 
-    /* --- Customization Specifics --- */
+   
     .design_container { flex-direction: column; padding: 0 20px 15px 20px; gap: 15px; height: calc(100vh - 100px); min-height: 0; }
     .canvas_container { height: auto; aspect-ratio: 1 / 1; width: 100%; max-height: 50vh; flex-shrink: 0; }
     .controls { width: 100%; padding: 10px; flex-grow: 1; overflow-y: auto; min-height: 0; }
@@ -236,52 +238,52 @@
     .brush_buttons { grid-template-columns: repeat(3, 1fr); gap: 3px; }
     .controls button { padding: 0.6rem; }
 
-    /* --- Footer --- */
+   
     .footer { padding: 15px 20px; flex-direction: row; justify-content: space-between; align-items: center; }
     .footer .hse_logo img { height: 5vh; }
     .footer h3 { font-size: 11px; line-height: 1.4; }
 }
 
-/* === Очень маленькие телефоны (<= 480px) === */
+
 @media (max-width: 480px) {
-     /* --- Layout --- */
-     /* Общее масштабирование логотипа */
+    
+    
      #logo-container img { max-width: 200px; }
 
      .mobile-prompt {
         font-size: 12px;
         padding: 6px 10px;
-        max-width: 180px; /* Уменьшаем ширину */
+        max-width: 180px;
         margin-top: 1.5vh;
         margin-bottom: 1.5vh;
     }
 
     .three_office { height: 22vh; margin-top: 10px; margin-bottom: 20px; }
 
-    /* --- О нас (Second Screen) --- */
+   
     .blur_text_pad { display: none; visibility: hidden; }
     .blur_text_phone { display: flex; visibility: visible; justify-content: center; filter: blur(1px); margin-bottom: 20px; }
     .blur_text_phone img { max-width: 95vw; height: auto; }
 
-     /* --- Магазин (Third Screen) --- */
+    
      .card { width: 90%; }
      .modal-info h2 { font-size: 1.4em; }
      .modal-info p { font-size: 0.9em; }
 
-     /* --- Галерея (Fourth Screen) --- */
+    
      #gallery_container { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px 20px 10px; }
 
-    /* --- Game Headers --- */
-    /* Стили для самого хедера (padding и т.д.) */
+   
+   
     .section.recycle .header,
     .section.upcycle .header,
     .section.customization .header {
         padding: 10px 10px;
-        /* Остальные свойства наследуются */
+       
     }
-     /* УДАЛЕНЫ правила для logo-container img и logo-caption внутри хедеров */
+    
 
-    /* Стили для оставшихся элементов хедера */
+   
      .section.recycle .header h3,
      .section.upcycle .header h3,
      .section.customization .header h3 {
@@ -292,14 +294,14 @@
           font-size: 12px;
       }
 
-     /* --- Recycle Specifics --- */
+    
      .bin { width: 80%; max-width: 120px; margin: 0 auto 10px auto; }
 
-    /* --- Customization Specifics --- */
+   
     .brush_buttons { grid-template-columns: repeat(2, 1fr); }
     .controls button { padding: 0.5rem; font-size: 0.9em; }
 
-     /* --- Footer --- */
+    
      .footer { padding: 10px 15px; align-items: center; }
      .footer .hse_logo img { height: 4.5vh; }
      .footer h3 { font-size: 10px; line-height: 1.3; }

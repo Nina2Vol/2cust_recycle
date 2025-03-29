@@ -1,254 +1,185 @@
-/* .bin {
-    width: 12vw;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    position: relative;
-    z-index: 10;
+
+
+
+
+
+
+
+
+
+.section.recycle {
+   
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+   
+    background-color: #f0f0f0;
 }
 
-.bin_img {
-    width: 100%;
-}
 
-.item {
+.header {
+   
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: grab;
-    z-index: 10;
-} */
-
-/* .modal {
-    display: none;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    z-index: 1000;
-    justify-content: center;
+    padding: 25px 40px;
+    box-sizing: border-box;
+
+   
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+
+   
+    z-index: 1;
 }
 
-.modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 80%;
-} */
 
-/* .modal-title {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.modal-stats {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.modal-button {
-    background-color: #4CAF50;
-    color: white;
+#recycle_back {
+    font-family: 'Roboto Condensed';
+    background: none;
     border: none;
-    padding: 10px 20px;
+    color: #000;
     font-size: 18px;
-    border-radius: 5px;
+   
     cursor: pointer;
-} */
+    padding: 0;
+   
+   
+}
 
-/* .bins_container {
+
+.header h3 {
+    color: #000;
+    font-size: 18px;
+   
+    text-align: right;
+    line-height: 1.2;
+    margin: 0;
+   
+   
+}
+
+
+
+.bins_container {
     position: absolute;
-    bottom: 20px;
+   
+    bottom: 5vh;     
     left: 0;
     right: 0;
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
-} */
-
-/* --- Стили для секции и других элементов остаются как есть --- */
-.section.recycle {
-    /* top:-100vh; */
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    /* position: relative;  */
-    background-color: #f0f0f0; /* Пример фона, если нужно */
-}
-
-/* --- Стили для шапки --- */
-.header {
-    /* 1. Позиционирование и размеры */
-    position: absolute; /* Позиционируем относительно .section.recycle */
-    top: 0;
-    left: 0;
-    width: 100%; /* Занимает всю ширину */
-    padding: 25px 40px; /* Отступы сверху/снизу и по бокам (подберите значения точнее) */
-    box-sizing: border-box; /* Чтобы padding не увеличивал общую ширину */
-
-    /* 2. Flexbox для расположения элементов */
-    display: flex;
-    justify-content: space-between; /* Распределяем элементы по краям и центру */
-    align-items: center; /* Вертикальное выравнивание по центру */
-
-    /* 3. Обеспечение видимости */
-    z-index: 1; /* Выше, чем у падающих элементов и корзин */
-}
-
-/* --- Стили для кнопки "НАЗАД" --- */
-#recycle_back {
-    font-family: 'Roboto Condensed';
-    background: none; /* Убираем фон */
-    border: none; /* Убираем рамку */
-    color: #000; /* Цвет текста (черный, как на макете) */
-    font-size: 18px; /* Размер шрифта (подберите) */
-    /* font-weight: bold; Можно сделать жирным */
-    cursor: pointer; /* Указатель при наведении */
-    padding: 0; /* Убираем внутренние отступы, если мешают */
-    /* Можно добавить немного отступа справа, если нужно */
-    /* margin-right: auto; */ /* Это не нужно при justify-content: space-between */
-}
-
-/* --- Стили для заголовка "РАСПРЕДЕЛИ ОТХОДЫ" --- */
-.header h3 {
-    color: #000; /* Цвет текста */
-    font-size: 18px; /* Размер шрифта (подберите) */
-    /* font-weight: bold; */
-    text-align: right; /* Выравнивание текста по правому краю */
-    line-height: 1.2; /* Межстрочный интервал (если нужно) */
-    margin: 0; /* Убираем стандартные отступы у h3 */
-    /* Можно добавить немного отступа слева, если нужно */
-    /* margin-left: auto; */ /* Это не нужно при justify-content: space-between */
-}
-
-
-/* --- Стили для корзин (убедитесь, что они ниже шапки) --- */
-.bins_container {
-    position: absolute;
-    /* bottom: 20px; */ /* Исходное значение */
-    bottom: 5vh;      /* Попробуйте поднять чуть выше, если нужно */
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around; /* Было space-around, может подойти */
-    /* justify-content: space-evenly; */ /* Или space-evenly для равных промежутков */
-    align-items: flex-end; /* Выравниваем по нижнему краю, если высота разная */
-    padding: 0 5%; /* Отступы по бокам для корзин */
+   
+    align-items: flex-end;
+    padding: 0 5%;
     z-index: 5;
-    /* Убрал flex-direction: row;, т.к. это значение по умолчанию для flex */
+   
 }
 
 .bin {
-    width: 18%; /* Процентная ширина, чтобы адаптировалось */
-    max-width: 150px; /* Максимальная ширина, чтобы не были слишком большими */
+    width: 18%;
+    max-width: 150px;
     position: relative;
     cursor: default;
-    /* min-height: 150px; */ /* Примерная высота, чтобы было место для картинки */
-    /* Убедитесь, что картинки внутри правильно позиционированы */
+   
+   
 }
 
-/* Обновленные стили для картинок корзин для лучшего отображения */
+
 .bin_img {
-    display: block; /* Чтобы убрать лишние отступы */
-    width: 100%;   /* Заполняет контейнер .bin по ширине */
-    height: auto;  /* Высота автоматически для сохранения пропорций */
+    display: block;
+    width: 100%;  
+    height: auto; 
     position: absolute;
-    bottom: 0; /* Прижимаем к низу контейнера .bin */
+    bottom: 0;
     left: 0;
     transition: opacity 0.2s ease-in-out;
 }
 
-/* Закрытая корзина по умолчанию видна */
-.bin .bin_img:last-child { /* .png */
+
+.bin .bin_img:last-child {
     opacity: 1;
-    position: relative; /* Чтобы остальные позиционировались относительно нее */
+    position: relative;
     z-index: 2;
 }
 
-/* Открытая корзина по умолчанию скрыта и под закрытой */
-.bin .bin_img:first-child { /* _open.png */
+
+.bin .bin_img:first-child {
     opacity: 0;
-    z-index: 1; /* Под закрытой */
-     /* bottom: 0; */ /* Уже установлено выше */
-     /* left: 0; */  /* Уже установлено выше */
+    z-index: 1;
+    
+     
 }
 
-/* Показываем открытую при наведении / перетаскивании */
+
 .bin:hover .bin_img:first-child,
 .bin.bin-hover .bin_img:first-child {
     opacity: 1;
-    z-index: 3; /* Выше закрытой */
+    z-index: 3;
 }
 
 .bin:hover .bin_img:last-child,
 .bin.bin-hover .bin_img:last-child {
     opacity: 0;
-    z-index: 2; /* Прячется */
+    z-index: 2;
 }
 
 
-/* --- Стили для .item (падающих элементов) --- */
+
 .item {
     position: absolute;
-    width: 70px;  /* Уменьшил размер для лучшего вида */
-    height: 70px; /* Уменьшил размер для лучшего вида */
+    width: 70px; 
+    height: 70px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     cursor: grab;
-    z-index: 10; /* По умолчанию выше корзин, но ниже шапки */
+    z-index: 10;
 }
 
-.item img { /* Добавил стиль для img внутри .item */
+.item img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Чтобы изображение вписывалось */
-    user-select: none; /* Запретить выделение картинки при перетаскивании */
-    -webkit-user-drag: none; /* Запретить стандартный drag-n-drop для картинки */
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 
 .item:active {
      cursor: grabbing;
-     z-index: 11; /* Выше остальных item при перетаскивании */
+     z-index: 11;
 }
 
-/* --- Стили модального окна --- */
+
 #resultModal {
-  /* ... ваши стили ... */
-  display: none; /* По умолчанию скрыто */
-  position: fixed; /* Фиксировано на экране */
-  z-index: 200; /* Выше всего остального */
+ 
+  display: none;
+  position: fixed;
+  z-index: 200;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5); /* Полупрозрачный фон */
-  display: flex; /* Используем flex для центрирования */
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#resultModal .modal-content { /* Добавляем #resultModal для специфичности */
+#resultModal .modal-content {
     background-color: #fff;
     padding: 30px 40px;
-    /* border-radius: 10px; */ /* Убираем скругление углов */
-    border-radius: 0; /* Явно ставим 0 */
-    /* border: 2px #000; */ /* Неправильный синтаксис, заменяем */
-    border: 1px solid #000; /* <-- ДОБАВЛЕНО: Черная рамка 1px */
+   
+    border-radius: 0;
+   
+    border: 1px solid #000;
     text-align: center;
     min-width: 300px;
-    box-shadow: none; /* Убираем тень, если она была */
+    box-shadow: none;
   }
 
 #resultModal .modal-title {
@@ -264,8 +195,8 @@
 }
 
 #resultModal .modal-button {
-  background-color: #4CAF50; /* Зеленый цвет */
-  color: #333333;           /* <-- ДОБАВЛЕНО: Темный текст */
+  background-color: #4CAF50;
+  color: #333333;          
   padding: 10px 25px;
   border: 1px solid #000;
   border-radius: 0px;
@@ -279,7 +210,7 @@
   background-color: #45a049;
 }
 
-/* Добавьте этот селектор, чтобы скрывать модальное окно по умолчанию */
+
 #resultModal:not([style*="display: flex"]) {
     display: none;
 }

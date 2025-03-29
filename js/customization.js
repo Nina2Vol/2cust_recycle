@@ -1,4 +1,4 @@
-// сохранение элементов сайта
+
 const baseCanvas = document.getElementById('tshirt_base_canvas');
 const baseCtx = baseCanvas.getContext('2d');
 const drawCanvas = document.getElementById('tshirt_drawing_canvas');
@@ -11,16 +11,16 @@ const publishBtn = document.getElementById('publish_button');
 const galleryContainer = document.getElementById('gallery_container');
 const saveInfo = document.getElementById('save_Info');
 
-// состояния приложения
+
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
-// Загружаем дизайны из localStorage при инициализации скрипта
+
 let designs = JSON.parse(localStorage.getItem('tshirtDesigns')) || [];
 let canvasOffsetX = 0;
 let canvasOffsetY = 0;
 
-// переменные для кистей
+
 const brushTypes = {
     NORMAL: 'normal',
     PENCIL: 'pencil',
@@ -32,7 +32,7 @@ const brushTypes = {
 let currentBrush = brushTypes.NORMAL;
 let isErasing = false;
 
-// --- НОВАЯ ФУНКЦИЯ для обновления фона ползунка ---
+
 function updateRangeFill(input) {
   if (!input) return;
   const min = input.min || 0;
@@ -42,16 +42,16 @@ function updateRangeFill(input) {
   input.style.background = `linear-gradient(to right, #000000 0%, #000000 ${percentage}%, #ccc ${percentage}%, #ccc 100%)`;
 }
 
-// --- ОБНОВЛЕННАЯ функция обновления текста размера кисти ---
+
 function updateBrushSize() {
-    if (brushSize && brushSizeValue) { // Добавляем проверку существования элементов
+    if (brushSize && brushSizeValue) { 
         brushSizeValue.textContent = brushSize.value;
     }
 }
 
-// запуск всех слушателей
+
 function setupEventListeners () {
-    // Проверяем наличие элементов перед добавлением слушателей
+    
     if (drawCanvas) {
         drawCanvas.addEventListener('mousedown', startDrawing);
         drawCanvas.addEventListener('mousemove', draw);
@@ -64,7 +64,7 @@ function setupEventListeners () {
     if (brushSize) {
         brushSize.addEventListener('input', () => {
             updateBrushSize();
-            updateRangeFill(brushSize); // Обновляем фон ползунка
+            updateRangeFill(brushSize); 
         });
     } else {
          console.error("Элемент brushSize не найден!");
@@ -82,8 +82,8 @@ function setupEventListeners () {
         console.error("Элемент publishBtn не найден!");
     }
 
-    // обработчики для кнопок с кистями
-    // Добавляем проверки на случай, если кнопки не будут найдены
+    
+    
     document.getElementById('normal_brush_btn')?.addEventListener('click', () => setBrush(brushTypes.NORMAL));
     document.getElementById('pencil_brush_btn')?.addEventListener('click', () => setBrush(brushTypes.PENCIL));
     document.getElementById('marker_brush_btn')?.addEventListener('click', () => setBrush(brushTypes.MARKER));
@@ -91,9 +91,9 @@ function setupEventListeners () {
     document.getElementById('eraser_brush_btn')?.addEventListener('click', () => setBrush(brushTypes.ERASER));
 }
 
-// запуск канваса
+
 function initCanvas () {
-    // Проверяем наличие контейнера и канвасов
+    
     const container = document.querySelector('.canvas_container');
     if (!container || !baseCanvas || !drawCanvas) {
         console.error("Не найден контейнер или один из канвасов для инициализации.");
@@ -104,9 +104,9 @@ function initCanvas () {
 
     if (containerWidth === 0 || containerHeight === 0) {
         console.warn("Контейнер канваса имеет нулевые размеры при инициализации.");
-        // Можно попробовать отложить инициализацию или использовать requestAnimationFrame
-        // requestAnimationFrame(initCanvas);
-        // return;
+        
+        
+        
     }
 
 
@@ -137,7 +137,7 @@ function initCanvas () {
         canvasOffsetY = (containerHeight - renderHeight) / 2;
 
         baseCtx.clearRect(0, 0, containerWidth, containerHeight);
-        baseCtx.fillStyle = '#ebebeb'; // Фон под футболкой
+        baseCtx.fillStyle = '#ebebeb'; 
         baseCtx.fillRect(0, 0, containerWidth, containerHeight);
         baseCtx.drawImage(tshirtImg, canvasOffsetX, canvasOffsetY, renderWidth, renderHeight);
 
@@ -147,7 +147,7 @@ function initCanvas () {
     tshirtImg.onerror = function() {
         console.error("Не удалось загрузить изображение футболки");
         if (baseCtx) {
-            baseCtx.fillStyle = '#e0e0e0'; // Заливка, если картинка не загрузилась
+            baseCtx.fillStyle = '#e0e0e0'; 
             baseCtx.fillRect(0, 0, containerWidth, containerHeight);
         }
     };
@@ -167,7 +167,7 @@ function setBrush(brushType) {
     document.querySelectorAll('.brush_btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    // Проверяем наличие кнопки перед добавлением класса
+    
     const activeButton = document.getElementById(`${brushType}_brush_btn`);
     if (activeButton) {
         activeButton.classList.add('active');
@@ -186,14 +186,14 @@ function draw(e) {
 
     if (isErasing) {
         drawCtx.globalCompositeOperation = 'destination-out';
-        drawCtx.strokeStyle = 'rgba(0,0,0,1)'; // Не важно, но нужно задать
+        drawCtx.strokeStyle = 'rgba(0,0,0,1)'; 
     }
     else {
         drawCtx.globalCompositeOperation = 'source-over';
-        drawCtx.strokeStyle = colorPicker ? colorPicker.value : '#000000'; // Цвет по умолчанию, если пикер не найден
+        drawCtx.strokeStyle = colorPicker ? colorPicker.value : '#000000'; 
     }
 
-    const currentBrushSize = brushSize ? brushSize.value : 5; // Размер по умолчанию
+    const currentBrushSize = brushSize ? brushSize.value : 5; 
 
     switch (currentBrush) {
         case brushTypes.NORMAL:
@@ -215,41 +215,41 @@ function draw(e) {
             break;
 
        case brushTypes.MARKER:
-            drawCtx.globalAlpha = 0.6; // Полупрозрачность для эффекта маркера
-            drawCtx.lineWidth = currentBrushSize * 2; // Можно немного уменьшить множитель толщины
-            drawCtx.lineCap = 'butt'; // ЗАМЕНА: Делаем концы линии круглыми
-            drawCtx.lineJoin = 'butt'; // ДОБАВЛЕНО: Делаем соединения линий круглыми
+            drawCtx.globalAlpha = 0.6; 
+            drawCtx.lineWidth = currentBrushSize * 2; 
+            drawCtx.lineCap = 'butt'; 
+            drawCtx.lineJoin = 'butt'; 
             drawCtx.beginPath();
             drawCtx.moveTo(lastX, lastY);
             drawCtx.lineTo(e.offsetX, e.offsetY);
             drawCtx.stroke();
-            drawCtx.globalAlpha = 1.0; // Возвращаем прозрачность
+            drawCtx.globalAlpha = 1.0; 
             break;
 
             case brushTypes.AIRBRUSH:
-                const sprayRadius = currentBrushSize; // Область разброса
-                const density = 20; // Можно немного увеличить плотность
-                drawCtx.globalAlpha = 0.2; // Можно сделать чуть прозрачнее
+                const sprayRadius = currentBrushSize; 
+                const density = 20; 
+                drawCtx.globalAlpha = 0.2; 
                 const brushColor = colorPicker ? colorPicker.value : '#000000';
-                drawCtx.fillStyle = brushColor; // Задаем цвет заливки один раз перед циклом
+                drawCtx.fillStyle = brushColor; 
     
-                // Рассчитываем радиус частиц спрея на основе размера кисти
-                // Используем Math.max, чтобы был минимальный видимый размер
-                const particleRadius = Math.max(1.5, currentBrushSize / 6); // Экспериментируйте с делителем (5, 6, 7...)
+                
+                
+                const particleRadius = Math.max(1.5, currentBrushSize / 6); 
     
                 for (let i = 0; i < density; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    // Разброс частиц внутри круга
+                    
                     const distance = Math.random() * sprayRadius;
                     const x = e.offsetX + Math.cos(angle) * distance;
                     const y = e.offsetY + Math.sin(angle) * distance;
     
-                    // Рисуем КРУГ (частицу) вместо точки 1x1
+                    
                     drawCtx.beginPath();
-                    drawCtx.arc(x, y, particleRadius, 0, Math.PI * 2); // Используем рассчитанный particleRadius
-                    drawCtx.fill(); // Заливаем круг
+                    drawCtx.arc(x, y, particleRadius, 0, Math.PI * 2); 
+                    drawCtx.fill(); 
                 }
-                drawCtx.globalAlpha = 1.0; // Возвращаем прозрачность
+                drawCtx.globalAlpha = 1.0; 
                 break;
 
         case brushTypes.ERASER:
@@ -279,21 +279,21 @@ function publishDesign () {
     tempCanvas.height = baseCanvas.height;
 
     const tempCtx = tempCanvas.getContext('2d');
-    tempCtx.drawImage(baseCanvas, 0, 0); // Рисуем фон (футболку)
-    tempCtx.drawImage(drawCanvas, 0, 0); // Рисуем пользовательский рисунок поверх
+    tempCtx.drawImage(baseCanvas, 0, 0); 
+    tempCtx.drawImage(drawCanvas, 0, 0); 
 
-    const imageData = tempCanvas.toDataURL('image/png', 0.7); // Сохраняем как PNG
+    const imageData = tempCanvas.toDataURL('image/png', 0.7); 
 
     designs.push({
         id: Date.now(),
         image: imageData,
-        date: new Date().toLocaleString() // Сохраняем дату/время
+        date: new Date().toLocaleString() 
     });
 
-    // Сохраняем обновленный массив дизайнов в localStorage
+    
     localStorage.setItem('tshirtDesigns', JSON.stringify(designs));
     showSaveNotification();
-    renderGallery(); // Обновляем отображение галереи
+    renderGallery(); 
 }
 
 function showSaveNotification() {
@@ -308,20 +308,20 @@ function showSaveNotification() {
 }
 
 function renderGallery () {
-    // Проверяем, есть ли контейнер галереи на странице
+    
     if (!galleryContainer) {
       console.error("Элемент #gallery_container не найден при попытке рендера!");
-      return; // Выходим, если контейнера нет
+      return; 
     }
 
-    galleryContainer.innerHTML = ''; // Очищаем контейнер
+    galleryContainer.innerHTML = ''; 
 
     if (designs.length === 0) {
         galleryContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #555; font-family: \'Roboto Condensed\', sans-serif;">У вас пока нет сохраненных дизайнов</p>';
         return;
     }
 
-    // Сортируем дизайны по дате (от новых к старым)
+    
     const sortedDesigns = [...designs].sort((a, b) => b.id - a.id);
 
     sortedDesigns.forEach(design => {
@@ -337,20 +337,20 @@ function renderGallery () {
         galleryContainer.appendChild(designElement);
     });
 
-    // Переназначаем слушатели на кнопки удаления КАЖДЫЙ раз после рендера
+    
     galleryContainer.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            // Используем closest для поиска родительского элемента gallery-item
+            
             const galleryItem = this.closest('.gallery-item');
             const id = parseInt(this.dataset.id);
-            // Добавляем визуальный эффект перед удалением (опционально)
+            
             if (galleryItem) {
                  galleryItem.style.transition = 'opacity 0.3s ease-out';
                  galleryItem.style.opacity = '0';
-                 // Удаляем элемент из DOM после завершения анимации
+                 
                  setTimeout(() => deleteDesign(id), 300);
             } else {
-                 // Если не нашли родителя, удаляем сразу
+                 
                  deleteDesign(id);
             }
         });
@@ -358,50 +358,50 @@ function renderGallery () {
 }
 
 function deleteDesign(id) {
-    // Фильтруем массив, оставляя все элементы, кроме удаляемого
+    
     designs = designs.filter(design => design.id !== id);
-    // Обновляем данные в localStorage
+    
     localStorage.setItem('tshirtDesigns', JSON.stringify(designs));
-    // Перерисовываем галерею (если элемент еще не удален из DOM анимацией)
-    // Если используем анимацию, возможно, перерисовка не нужна сразу,
-    // но если удаление мгновенное, то вызываем renderGallery()
-    // В нашем случае, renderGallery() вызывается после анимации из слушателя
-    // Но если анимации нет, или для надежности - можно раскомментировать:
+    
+    
+    
+    
+    
     renderGallery();
 }
 
 
-// --- ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ---
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded - Initializing Customization...");
-    // Вызываем инициализацию только если находимся в секции customization
-    // (Это может быть полезно, если скрипт глобальный)
-    // const customizationSection = document.querySelector('.section.customization');
-    // if (customizationSection && customizationSection.classList.contains('visible')) {
-        // Если проверка на видимость не нужна, инициализируем всегда:
+    
+    
+    
+    
+        
         initCanvas();
         setupEventListeners();
 
-        // Устанавливаем начальное значение текста и фона ползунка
+        
         if (brushSize) {
             updateBrushSize();
             updateRangeFill(brushSize);
         }
 
-        // Отображаем галерею при загрузке
+        
         renderGallery();
-    // }
+    
 
-    // Добавляем слушатель для изменения размера окна, чтобы перерисовать канвас
-    // Используем debounce для предотвращения слишком частых вызовов
+    
+    
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
              console.log("Window resized - Reinitializing canvas...");
              initCanvas();
-             // Может потребоваться перерисовать содержимое drawCanvas, если оно есть
-        }, 250); // Выполняем через 250мс после последнего события resize
+             
+        }, 250); 
     });
 
 });
