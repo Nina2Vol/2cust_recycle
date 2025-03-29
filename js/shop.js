@@ -110,12 +110,12 @@ import { OrbitControls } from 'OrbitControls';
 import { GLTFLoader } from 'GLTFLoader';
 
 const shopPathModels = [
-    '/models/product01.glb', // Начинается со слеша /
-    '/models/product02.glb',
-    '/models/product03.glb',
-    '/models/product04.glb',
-    '/models/product05.glb',
-    '/models/product06.glb',
+    '/2cust_recycle/models/product01.glb',
+    '/2cust_recycle/models/product02.glb',
+    '/2cust_recycle/models/product03.glb',
+    '/2cust_recycle/models/product04.glb',
+    '/2cust_recycle/models/product05.glb',
+    '/2cust_recycle/models/product06.glb',
 ];
 
 const productData = [
