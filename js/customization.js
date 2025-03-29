@@ -214,10 +214,11 @@ function draw(e) {
             drawCtx.stroke();
             break;
 
-        case brushTypes.MARKER:
-            drawCtx.globalAlpha = 0.7;
-            drawCtx.lineWidth = currentBrushSize * 1.5;
-            drawCtx.lineCap = 'butt';
+       case brushTypes.MARKER:
+            drawCtx.globalAlpha = 0.6; // Полупрозрачность для эффекта маркера
+            drawCtx.lineWidth = currentBrushSize * 2; // Можно немного уменьшить множитель толщины
+            drawCtx.lineCap = 'butt'; // ЗАМЕНА: Делаем концы линии круглыми
+            drawCtx.lineJoin = 'butt'; // ДОБАВЛЕНО: Делаем соединения линий круглыми
             drawCtx.beginPath();
             drawCtx.moveTo(lastX, lastY);
             drawCtx.lineTo(e.offsetX, e.offsetY);
@@ -225,25 +226,31 @@ function draw(e) {
             drawCtx.globalAlpha = 1.0; // Возвращаем прозрачность
             break;
 
-        case brushTypes.AIRBRUSH:
-            const radius = currentBrushSize;
-            const density = 15;
-            drawCtx.globalAlpha = 0.3;
-            const brushColor = colorPicker ? colorPicker.value : '#000000';
-            for (let i = 0; i < density; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * radius;
-                const x = e.offsetX + Math.cos(angle) * distance;
-                const y = e.offsetY + Math.sin(angle) * distance;
-                drawCtx.beginPath();
-                // Используем fillRect вместо arc для лучшей производительности спрея
-                // drawCtx.arc(x, y, 1, 0, Math.PI * 2);
-                drawCtx.fillStyle = brushColor; // Используем сохраненный цвет
-                // drawCtx.fill();
-                drawCtx.fillRect(x, y, 1, 1); // Рисуем точку 1x1 px
-            }
-            drawCtx.globalAlpha = 1.0; // Возвращаем прозрачность
-            break;
+            case brushTypes.AIRBRUSH:
+                const sprayRadius = currentBrushSize; // Область разброса
+                const density = 20; // Можно немного увеличить плотность
+                drawCtx.globalAlpha = 0.2; // Можно сделать чуть прозрачнее
+                const brushColor = colorPicker ? colorPicker.value : '#000000';
+                drawCtx.fillStyle = brushColor; // Задаем цвет заливки один раз перед циклом
+    
+                // Рассчитываем радиус частиц спрея на основе размера кисти
+                // Используем Math.max, чтобы был минимальный видимый размер
+                const particleRadius = Math.max(1.5, currentBrushSize / 6); // Экспериментируйте с делителем (5, 6, 7...)
+    
+                for (let i = 0; i < density; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    // Разброс частиц внутри круга
+                    const distance = Math.random() * sprayRadius;
+                    const x = e.offsetX + Math.cos(angle) * distance;
+                    const y = e.offsetY + Math.sin(angle) * distance;
+    
+                    // Рисуем КРУГ (частицу) вместо точки 1x1
+                    drawCtx.beginPath();
+                    drawCtx.arc(x, y, particleRadius, 0, Math.PI * 2); // Используем рассчитанный particleRadius
+                    drawCtx.fill(); // Заливаем круг
+                }
+                drawCtx.globalAlpha = 1.0; // Возвращаем прозрачность
+                break;
 
         case brushTypes.ERASER:
             drawCtx.lineWidth = currentBrushSize * 1.5;

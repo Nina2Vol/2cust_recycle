@@ -407,17 +407,17 @@ main {
     color: #000;
 }
 
-/* customization.css */
-
 /* Контейнер галереи */
 #gallery_container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
-    /* gap: 25px; */ /* Уменьшаем отступ */
-    gap: 2vw; /* Используем vw для отступа */
-    /* padding: 0 40px 40px 40px; */ /* Заменяем на vw */
-    padding: 0 2vw 40px 2vw; /* <-- ИЗМЕНЕНО: Боковые отступы 2vw */
+    display: grid; /* Возвращаем Grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки по умолчанию (десктоп) */
+    gap: 25px; /* Отступ между элементами */
+    padding: 0 40px 40px 40px; /* Отступы контейнера галереи */
     box-sizing: border-box;
+    /* Убираем flex свойства */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
 }
 
 /* Отдельный элемент галереи */
@@ -426,19 +426,20 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /* Убираем явную ширину и max-width, т.к. управляется гридом */
+    /* width: 50%; */
+    /* max-width: 500px; */
 }
 
 /* Изображение */
 .gallery-item img {
-    width: 100%;
+    width: 100%; /* Занимает всю ширину своей ячейки грида */
     height: auto;
     object-fit: contain;
-    /* background-color: #f0f0f0; */ /* <-- УБИРАЕМ фон */
+    background-color: #f0f0f0; /* Фон под картинкой */
     margin-bottom: 10px;
-    /* border: 1px solid #ccc; */ /* <-- УБИРАЕМ рамку */
+    border: 1px solid #ccc;
     box-sizing: border-box;
-    /* Добавляем минимальную высоту, чтобы предотвратить "схлопывание" */
-    min-height: 150px; /* Подбери значение или оставь auto */
 }
 
 /* Блок с информацией (дата + кнопка) */
